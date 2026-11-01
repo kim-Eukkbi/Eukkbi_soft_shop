@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eukkbi_Soft</title>
+<link rel="icon" href="assets/shop_icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=M+PLUS+Rounded+1c:wght@700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+  /* Layout: the shop's front page. A short header with the language switch, one line about the shop, then a card
+     per product linking to its manual and terms. Same pink and lavender as the product pages. */
+  :root {
+    --bg: #fff8fb; --surface: #ffffff; --surface-2: #fff0f6; --ink: #33242e; --muted: #76606c; --line: #f1dbe5;
+    --accent: #d9467d; --accent-ink: #ffffff; --lav: #6f55df; --lav-soft: #ece6ff;
+    --font-display: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
+    --font-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17121a; --surface: #211a24; --surface-2: #2a2030; --ink: #f5e9f0; --muted: #bba7b3; --line: #3a2d3c;
+      --accent: #ff8fb8; --accent-ink: #2a1420; --lav: #b9a6ff; --lav-soft: #2c2540;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17121a; --surface: #211a24; --surface-2: #2a2030; --ink: #f5e9f0; --muted: #bba7b3; --line: #3a2d3c;
+    --accent: #ff8fb8; --accent-ink: #2a1420; --lav: #b9a6ff; --lav-soft: #2c2540;
+    color-scheme: dark;
+  }
+  html[lang="ko"] {
+    --font-display: "Jua", "Noto Sans KR", sans-serif;
+    --font-body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.7; }
+  a { color: var(--accent); }
+  :focus-visible { outline: 3px solid var(--lav); outline-offset: 2px; border-radius: 6px; }
+
+  .page {
+    max-width: 880px; margin: 0 auto; padding-block: 24px 56px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: flex; flex-direction: column; gap: 40px;
+  }
+  .top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .shop { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0; }
+  .shop img { width: 56px; height: 56px; border-radius: 16px; flex: none; }
+  .shop h1 { font-family: var(--font-display); font-weight: 800; font-size: 26px; margin: 0; line-height: 1.2; }
+  .shop p { margin: 0; color: var(--muted); font-size: 14px; }
+  .langs { display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; flex: none; }
+  .langs button { font: inherit; font-size: 14px; font-weight: 700; color: var(--muted); background: var(--surface); border: 0; padding: 6px 14px; cursor: pointer; }
+  .langs button + button { border-left: 1px solid var(--line); }
+  .langs button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+
+  .intro { font-size: 18px; margin: 0; max-width: 62ch; }
+  h2 { font-family: var(--font-display); font-size: 20px; margin: 0 0 14px; color: var(--muted); letter-spacing: 0.04em; }
+
+  .product {
+    display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 20px; align-items: center;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 20px;
+  }
+  .product img { width: 112px; height: 112px; }
+  .product h3 { font-family: var(--font-display); font-size: 22px; margin: 0; line-height: 1.3; }
+  .product .sub { color: var(--muted); font-size: 13px; margin: 2px 0 8px; }
+  .product p { margin: 0 0 14px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .links a {
+    text-decoration: none; font-weight: 700; font-size: 14px; padding: 7px 16px; border-radius: 999px;
+    border: 1px solid var(--accent); color: var(--accent);
+  }
+  .links a.primary { background: var(--accent); color: var(--accent-ink); }
+  @media (max-width: 520px) { .product { grid-template-columns: 1fr; } .product img { width: 88px; height: 88px; } }
+
+  .contact { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .contact .id { font-family: ui-monospace, Consolas, monospace; background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; padding: 2px 10px; user-select: all; }
+  .copy { font: inherit; font-size: 13px; font-weight: 700; border: 1px solid var(--accent); color: var(--accent); background: var(--surface); border-radius: 999px; padding: 3px 12px; cursor: pointer; }
+  footer { color: var(--muted); font-size: 13px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <div class="shop">
+      <img src="assets/shop_icon.png" alt="" width="56" height="56">
+      <div>
+        <h1>Eukkbi_Soft</h1>
+        <p data-lang="ja">VRChat 向け Unity ツール・ギミック専門ショップ</p>
+        <p data-lang="ko" hidden>VRChat 유니티 툴 전문 숍</p>
+        <p data-lang="en" hidden>Unity tools &amp; gimmicks for VRChat</p>
+      </div>
+    </div>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" id="lang-ja" data-set-lang="ja" aria-pressed="true">日本語</button>
+      <button type="button" id="lang-ko" data-set-lang="ko" aria-pressed="false">한국어</button>
+      <button type="button" id="lang-en" data-set-lang="en" aria-pressed="false">English</button>
+    </div>
+  </header>
+
+  <p class="intro" data-lang="ja">「入れるだけで使える」をテーマに、アバターを壊さずに導入できる Modular Avatar 対応のツールを作っています。</p>
+  <p class="intro" data-lang="ko" hidden>"넣기만 하면 바로 쓰는" 툴을 목표로, 아바타를 망가뜨리지 않고 설치할 수 있는 Modular Avatar 대응 툴을 만들고 있어요.</p>
+  <p class="intro" data-lang="en" hidden>Tools you just drop in: Modular Avatar based, and they never edit your avatar directly.</p>
+
+  <section>
+    <h2 data-lang="ja">商品</h2>
+    <h2 data-lang="ko" hidden>상품</h2>
+    <h2 data-lang="en" hidden>Products</h2>
+    <div class="product">
+      <img src="assets/simple_nade_asset.png" alt="" width="112" height="112">
+      <div>
+        <h3>Simple Nade Asset</h3>
+        <p class="sub">シンプルなでアセット · v1.0.0</p>
+        <p data-lang="ja">なでると表情が変わる「なでなで」リアクションギミック。手が近づくほど表情がじわっと変わる近接ウェイトにも対応。</p>
+        <p data-lang="ko" hidden>쓰다듬으면 표정이 바뀌는 쓰다듬기 반응 기믹. 손이 가까워질수록 표정이 스르르 바뀌는 근접 가중치도 지원해요.</p>
+        <p data-lang="en" hidden>A head-pat reaction gimmick that changes your face, with a proximity weight that eases it in as the hand comes closer.</p>
+        <div class="links">
+          <a class="primary" data-lang="ja" href="simple-nade-asset/manual/#ja">マニュアル</a>
+          <a class="primary" data-lang="ko" href="simple-nade-asset/manual/#ko" hidden>설명서</a>
+          <a class="primary" data-lang="en" href="simple-nade-asset/manual/#en" hidden>Manual</a>
+          <a data-lang="ja" href="simple-nade-asset/terms/">利用規約</a>
+          <a data-lang="ko" href="simple-nade-asset/terms/" hidden>이용 약관</a>
+          <a data-lang="en" href="simple-nade-asset/terms/" hidden>Terms of use</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-lang="ja">お問い合わせ</h2>
+    <h2 data-lang="ko" hidden>문의</h2>
+    <h2 data-lang="en" hidden>Contact</h2>
+    <p data-lang="ja">BOOTH のメッセージ、または Discord へどうぞ。日本語・한국어・English で対応します。</p>
+    <p data-lang="ko" hidden>BOOTH 메시지나 Discord로 연락해 주세요. 日本語・한국어・English로 답해 드려요.</p>
+    <p data-lang="en" hidden>Reach us through BOOTH messages or Discord, in Japanese, Korean or English.</p>
+    <div class="contact">Discord <span class="id">eukkbi_soft</span><button type="button" class="copy" id="copy-discord" data-copy="eukkbi_soft">Copy</button></div>
+  </section>
+
+  <footer>© Eukkbi_Soft</footer>
+</div>
+
+<script>
+  (function () {
+    var LANGS = ["ja", "ko", "en"];
+    var KEY = "eukkbi-shop-lang";
+    function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+    function store(lang) { try { localStorage.setItem(KEY, lang); } catch (e) { /* private window */ } }
+    function initial() {
+      var hash = location.hash.replace("#", "");
+      if (LANGS.indexOf(hash) >= 0) return hash;
+      var saved = stored();
+      if (LANGS.indexOf(saved) >= 0) return saved;
+      var nav = (navigator.language || "").toLowerCase().slice(0, 2);
+      return LANGS.indexOf(nav) >= 0 ? nav : "en";
+    }
+    function apply(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-lang]").forEach(function (el) { el.hidden = el.getAttribute("data-lang") !== lang; });
+      document.querySelectorAll("[data-set-lang]").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-set-lang") === lang)); });
+    }
+    document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+      b.addEventListener("click", function () { var lang = b.getAttribute("data-set-lang"); apply(lang); store(lang); });
+    });
+    var copy = document.getElementById("copy-discord");
+    copy.addEventListener("click", function () {
+      var done = function () { copy.textContent = "✓"; setTimeout(function () { copy.textContent = "Copy"; }, 1500); };
+      var select = function () {
+        var range = document.createRange();
+        range.selectNodeContents(copy.parentNode.querySelector(".id"));
+        var selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText("eukkbi_soft").then(done, select);
+      else select();
+    });
+    apply(initial());
+  })();
+</script>
+</body>
+</html>
