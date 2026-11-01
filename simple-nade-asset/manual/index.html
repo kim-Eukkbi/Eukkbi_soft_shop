@@ -299,7 +299,7 @@
         <h1>Simple Nade Asset マニュアル</h1>
         <p class="lead">なでると表情が変わる、Modular Avatar 対応のギミックです。プレハブをアバターに入れて、リアクションを選んで、そのままアップロードするだけです。</p>
         <ul class="facts">
-          <li><b>Ver.</b>1.1.0</li>
+          <li><b>Ver.</b>1.1.1</li>
           <li><b>Unity</b>2022.3</li>
           <li><b>VRChat SDK</b>Avatars 3.10 以上</li>
           <li><b>Modular Avatar</b>1.18 以上（NDMF 1.14 以上）</li>
@@ -349,7 +349,7 @@
         <h2>リアクション</h2>
         <p>リアクションごとに <span class="ui">表情</span> <span class="ui">アニメーション</span> <span class="ui">音</span> から使うものだけONにします。</p>
         <ul>
-          <li><b>表情</b>：表情クリップを入れるか、サムネイル（または <span class="ui">選ぶ</span>）を押して顔を見ながら選びます。<span class="ui">プレビュー</span> でシーン上の顔を確認できます。<span class="ui">まばたき・視線を止める</span> をONにすると、リアクション中はまばたきと視線を止めて、目を閉じる表情と重ならないようにします。</li>
+          <li><b>表情</b>：表情クリップを入れるか、サムネイル（または <span class="ui">選ぶ</span>）を押して顔を見ながら選びます。<span class="ui">プレビュー</span> でシーン上の顔を確認できます。選択ウィンドウ上部の <span class="ui">ブレンドシェイプ</span> を押すと、顔のシェイプを1つずつ表情として表示できるので、クリップのない表情（目を閉じて笑う顔など）も選べます。<span class="ui">まばたき・視線を止める</span> をONにすると、リアクション中はまばたきと視線を止めて、目を閉じる表情と重ならないようにします。</li>
           <li><b>アニメーション</b>：表情と一緒に FX レイヤーで再生されます（オブジェクトのON/OFF、パーティクル、マテリアル、耳・しっぽなどのボーン）。Humanoid の体の動きは再生されません。</li>
           <li><b>音</b>：複数入れると毎回ランダムで1つ再生されます。<span class="ui">触れたとき1回</span> と <span class="ui">触れている間ループ</span> から選べます。周りの人にも聞こえます。</li>
         </ul>
@@ -490,6 +490,7 @@
         <h2>更新履歴・お問い合わせ</h2>
         <div class="table-wrap"><table>
           <tr><th>バージョン</th><th>日付</th><th>内容</th></tr>
+          <tr><td class="num">1.1.1</td><td class="num">2026/11/01</td><td>表情を選ぶウィンドウに「ブレンドシェイプ」表示を追加（クリップのない表情も選べるように）。</td></tr>
           <tr><td class="num">1.1.0</td><td class="num">2026/11/01</td><td>近接ウェイトを追加。インスペクターをタブ式に整理。表情を作るタブを改善（表情を選ぶ・ブレンドシェイプのスライダー）。ゲーム内でメニューアイコンが表示されない問題を修正。</td></tr>
           <tr><td class="num">1.0.0</td><td class="num">2026/11/01</td><td>公開</td></tr>
         </table></div>
@@ -506,7 +507,7 @@
         <h1>Simple Nade Asset 설명서</h1>
         <p class="lead">쓰다듬으면 표정이 바뀌는 Modular Avatar 기믹이에요. 프리팹을 아바타에 넣고, 반응을 고르고, 그대로 업로드하면 끝이에요.</p>
         <ul class="facts">
-          <li><b>버전</b>1.1.0</li>
+          <li><b>버전</b>1.1.1</li>
           <li><b>Unity</b>2022.3</li>
           <li><b>VRChat SDK</b>Avatars 3.10 이상</li>
           <li><b>Modular Avatar</b>1.18 이상 (NDMF 1.14 이상)</li>
@@ -556,7 +557,7 @@
         <h2>반응</h2>
         <p>반응마다 <span class="ui">표정</span> <span class="ui">애니메이션</span> <span class="ui">소리</span> 중 쓰는 것만 켜요.</p>
         <ul>
-          <li><b>표정</b>: 표정 클립을 넣거나, 썸네일(또는 <span class="ui">고르기</span>)을 눌러 얼굴을 보면서 골라요. <span class="ui">미리보기</span>로 씬에서 얼굴을 확인할 수 있어요. <span class="ui">눈 깜빡임·시선 멈춤</span>을 켜면 반응 중에는 눈 깜빡임과 시선을 멈춰서, 눈 감는 표정과 겹치지 않게 해요.</li>
+          <li><b>표정</b>: 표정 클립을 넣거나, 썸네일(또는 <span class="ui">고르기</span>)을 눌러 얼굴을 보면서 골라요. <span class="ui">미리보기</span>로 씬에서 얼굴을 확인할 수 있어요. 고르기 창 위쪽의 <span class="ui">블렌드셰이프</span>를 누르면 얼굴 셰이프를 하나씩 표정으로 보여 줘서, 클립이 없는 표정(눈 감고 웃는 얼굴 등)도 고를 수 있어요. <span class="ui">눈 깜빡임·시선 멈춤</span>을 켜면 반응 중에는 눈 깜빡임과 시선을 멈춰서, 눈 감는 표정과 겹치지 않게 해요.</li>
           <li><b>애니메이션</b>: 표정과 함께 FX 레이어에서 재생돼요 (오브젝트 켜고 끄기, 파티클, 머티리얼, 귀·꼬리 같은 본). 휴머노이드 몸 동작은 재생되지 않아요.</li>
           <li><b>소리</b>: 여러 개 넣으면 매번 무작위로 하나가 재생돼요. <span class="ui">닿을 때 한 번</span>과 <span class="ui">닿아 있는 동안 반복</span> 중에 고를 수 있어요. 주변 사람도 들을 수 있어요.</li>
         </ul>
@@ -697,6 +698,7 @@
         <h2>업데이트·문의</h2>
         <div class="table-wrap"><table>
           <tr><th>버전</th><th>날짜</th><th>내용</th></tr>
+          <tr><td class="num">1.1.1</td><td class="num">2026/11/01</td><td>표정 고르기 창에 "블렌드셰이프" 보기 추가 (클립이 없는 표정도 고를 수 있게).</td></tr>
           <tr><td class="num">1.1.0</td><td class="num">2026/11/01</td><td>근접 가중치 추가. 인스펙터를 탭으로 정리. 표정 만들기 탭 개선 (표정 선택하기·블렌드셰이프 슬라이더). 게임 안에서 메뉴 아이콘이 안 보이던 문제 수정.</td></tr>
           <tr><td class="num">1.0.0</td><td class="num">2026/11/01</td><td>공개</td></tr>
         </table></div>
@@ -713,7 +715,7 @@
         <h1>Simple Nade Asset Manual</h1>
         <p class="lead">A Modular Avatar gimmick that changes your face when someone pats you. Drop the prefab into your avatar, pick a reaction and upload.</p>
         <ul class="facts">
-          <li><b>Version</b>1.1.0</li>
+          <li><b>Version</b>1.1.1</li>
           <li><b>Unity</b>2022.3</li>
           <li><b>VRChat SDK</b>Avatars 3.10 or later</li>
           <li><b>Modular Avatar</b>1.18 or later (NDMF 1.14 or later)</li>
@@ -763,7 +765,7 @@
         <h2>Reactions</h2>
         <p>Turn on only what each reaction needs: <span class="ui">Face</span>, <span class="ui">Animation</span> and <span class="ui">Sound</span>.</p>
         <ul>
-          <li><b>Face</b>: set an expression clip, or click the thumbnail (or <span class="ui">Pick</span>) to choose while seeing the face. <span class="ui">Preview</span> shows it on the avatar in the Scene. <span class="ui">Stop blink &amp; eye look</span> pauses blinking and eye tracking during the reaction so they don't fight closed-eye faces.</li>
+          <li><b>Face</b>: set an expression clip, or click the thumbnail (or <span class="ui">Pick</span>) to choose while seeing the face. <span class="ui">Preview</span> shows it on the avatar in the Scene. <span class="ui">Blendshapes</span> at the top of the picker lists the face's shapes one by one as faces, so you can pick faces that have no clip, such as a closed-eye smile. <span class="ui">Stop blink &amp; eye look</span> pauses blinking and eye tracking during the reaction so they don't fight closed-eye faces.</li>
           <li><b>Animation</b>: plays in the FX layer with the face (object toggles, particles, materials, bones such as ears and tails). Humanoid body motion doesn't play.</li>
           <li><b>Sound</b>: with several clips one is picked at random each time. Choose <span class="ui">Once on touch</span> or <span class="ui">Loop while touched</span>. People nearby hear it too.</li>
         </ul>
@@ -904,6 +906,7 @@
         <h2>Updates &amp; contact</h2>
         <div class="table-wrap"><table>
           <tr><th>Version</th><th>Date</th><th>Changes</th></tr>
+          <tr><td class="num">1.1.1</td><td class="num">2026/11/01</td><td>Added a Blendshapes view to the expression picker, so faces without a clip can be picked too.</td></tr>
           <tr><td class="num">1.1.0</td><td class="num">2026/11/01</td><td>Added proximity weight. Tabbed inspector. Improved New face tab (Pick an expression, blendshape sliders). Fixed the menu icon not showing in-game.</td></tr>
           <tr><td class="num">1.0.0</td><td class="num">2026/11/01</td><td>Released</td></tr>
         </table></div>
