@@ -299,7 +299,7 @@
         <h1>Simple Nade Asset マニュアル</h1>
         <p class="lead">なでると表情が変わる、Modular Avatar 対応のギミックです。プレハブをアバターに入れて、リアクションを選んで、そのままアップロードするだけです。</p>
         <ul class="facts">
-          <li><b>Ver.</b>1.1.1</li>
+          <li><b>Ver.</b>1.2.0</li>
           <li><b>Unity</b>2022.3</li>
           <li><b>VRChat SDK</b>Avatars 3.10 以上</li>
           <li><b>Modular Avatar</b>1.18 以上（NDMF 1.14 以上）</li>
@@ -407,7 +407,7 @@
           <li><span class="ui">最初からON</span>：アップロード直後にONの状態で始めるか。ゲーム内で切り替えた状態は保存されます。</li>
           <li><span class="ui">メニュー名</span>（初期値 なでなで）・<span class="ui">ON/OFFボタン名</span></li>
           <li><span class="ui">メニューアイコン</span>・<span class="ui">ON/OFFアイコン</span>：空なら同梱のアイコンを使います。</li>
-          <li><span class="ui">リアクションアイコンを自動生成</span>：アップロード時に各リアクションの顔を撮影してアイコンにします。<span class="ui">アイコンは顔メッシュのみ</span>・<span class="ui">アイコンの顔ズーム</span> で写り方を調整できます。</li>
+          <li><span class="ui">リアクションアイコンを自動生成</span>：アップロード時に各リアクションの顔を撮影してアイコンにします。<span class="ui">アイコンは顔を前面に</span>・<span class="ui">アイコンの顔ズーム</span> で写り方を調整できます。</li>
           <li><span class="ui">ラジアルメニューのプレビュー</span>：最初のマスがアバターメニューの「なでなで」ボタン、その後が開いたページです。</li>
         </ul>
         <p>ゲーム内では、アバターのメニューに「なでなで」が追加されます。中には全体の ON/OFF とリアクションがあり、部位が2つ以上ある場合は部位ごとのサブメニュー（部位の ON/OFF とリアクション）が並びます。選択は保存・同期されます。</p>
@@ -490,6 +490,7 @@
         <h2>更新履歴・お問い合わせ</h2>
         <div class="table-wrap"><table>
           <tr><th>バージョン</th><th>日付</th><th>内容</th></tr>
+          <tr><td class="num">1.2.0</td><td class="num">2026/11/02</td><td>表情のサムネイルとメニューアイコンを目のボーンを基準に撮るようにし、顔が切れないように改善。「顔メッシュのみ」を「顔を前面に」に変更（髪や服を表示したまま、前髪に隠れた目が見えるように）。</td></tr>
           <tr><td class="num">1.1.1</td><td class="num">2026/11/01</td><td>表情を選ぶウィンドウに「ブレンドシェイプ」表示を追加（クリップのない表情も選べるように）。</td></tr>
           <tr><td class="num">1.1.0</td><td class="num">2026/11/01</td><td>近接ウェイトを追加。インスペクターをタブ式に整理。表情を作るタブを改善（表情を選ぶ・ブレンドシェイプのスライダー）。ゲーム内でメニューアイコンが表示されない問題を修正。</td></tr>
           <tr><td class="num">1.0.0</td><td class="num">2026/11/01</td><td>公開</td></tr>
@@ -507,7 +508,7 @@
         <h1>Simple Nade Asset 설명서</h1>
         <p class="lead">쓰다듬으면 표정이 바뀌는 Modular Avatar 기믹이에요. 프리팹을 아바타에 넣고, 반응을 고르고, 그대로 업로드하면 끝이에요.</p>
         <ul class="facts">
-          <li><b>버전</b>1.1.1</li>
+          <li><b>버전</b>1.2.0</li>
           <li><b>Unity</b>2022.3</li>
           <li><b>VRChat SDK</b>Avatars 3.10 이상</li>
           <li><b>Modular Avatar</b>1.18 이상 (NDMF 1.14 이상)</li>
@@ -615,7 +616,7 @@
           <li><span class="ui">처음부터 켜기</span>: 업로드 직후 켜진 상태로 시작할지 정해요. 게임 안에서 바꾼 상태는 저장돼요.</li>
           <li><span class="ui">메뉴 이름</span>(기본 なでなで)·<span class="ui">ON/OFF 버튼 이름</span></li>
           <li><span class="ui">메뉴 아이콘</span>·<span class="ui">ON/OFF 아이콘</span>: 비워 두면 동봉된 아이콘을 써요.</li>
-          <li><span class="ui">반응 아이콘 자동 생성</span>: 업로드할 때 각 반응의 얼굴을 찍어 아이콘으로 넣어요. <span class="ui">아이콘은 얼굴 메시만</span>·<span class="ui">아이콘 얼굴 확대</span>로 찍히는 모습을 조절해요.</li>
+          <li><span class="ui">반응 아이콘 자동 생성</span>: 업로드할 때 각 반응의 얼굴을 찍어 아이콘으로 넣어요. <span class="ui">아이콘은 얼굴을 앞으로</span>·<span class="ui">아이콘 얼굴 확대</span>로 찍히는 모습을 조절해요.</li>
           <li><span class="ui">Radial 메뉴 미리보기</span>: 첫 칸이 아바타 메뉴의 "なでなで" 버튼이고, 그다음이 열리는 페이지예요.</li>
         </ul>
         <p>게임 안에서는 아바타 메뉴에 "なでなで"가 추가돼요. 안에는 전체 ON/OFF와 반응이 있고, 부위가 2개 이상이면 부위별 서브메뉴(부위 ON/OFF와 반응)가 있어요. 선택은 저장·동기화돼요.</p>
@@ -698,6 +699,7 @@
         <h2>업데이트·문의</h2>
         <div class="table-wrap"><table>
           <tr><th>버전</th><th>날짜</th><th>내용</th></tr>
+          <tr><td class="num">1.2.0</td><td class="num">2026/11/02</td><td>표정 썸네일과 메뉴 아이콘을 눈 본 기준으로 찍어서 얼굴이 잘리지 않게 개선. "얼굴 메시만"을 "얼굴을 앞으로"로 변경 (머리카락과 옷은 그대로 보이고, 앞머리에 가린 눈이 보이게).</td></tr>
           <tr><td class="num">1.1.1</td><td class="num">2026/11/01</td><td>표정 고르기 창에 "블렌드셰이프" 보기 추가 (클립이 없는 표정도 고를 수 있게).</td></tr>
           <tr><td class="num">1.1.0</td><td class="num">2026/11/01</td><td>근접 가중치 추가. 인스펙터를 탭으로 정리. 표정 만들기 탭 개선 (표정 선택하기·블렌드셰이프 슬라이더). 게임 안에서 메뉴 아이콘이 안 보이던 문제 수정.</td></tr>
           <tr><td class="num">1.0.0</td><td class="num">2026/11/01</td><td>공개</td></tr>
@@ -715,7 +717,7 @@
         <h1>Simple Nade Asset Manual</h1>
         <p class="lead">A Modular Avatar gimmick that changes your face when someone pats you. Drop the prefab into your avatar, pick a reaction and upload.</p>
         <ul class="facts">
-          <li><b>Version</b>1.1.1</li>
+          <li><b>Version</b>1.2.0</li>
           <li><b>Unity</b>2022.3</li>
           <li><b>VRChat SDK</b>Avatars 3.10 or later</li>
           <li><b>Modular Avatar</b>1.18 or later (NDMF 1.14 or later)</li>
@@ -823,7 +825,7 @@
           <li><span class="ui">On by default</span>: whether it starts switched on after upload. What you choose in-game is saved.</li>
           <li><span class="ui">Menu name</span> (なでなで by default) and <span class="ui">ON/OFF label</span></li>
           <li><span class="ui">Menu icon</span> and <span class="ui">ON/OFF icon</span>: empty uses the bundled icons.</li>
-          <li><span class="ui">Generate face icons</span>: on upload, each reaction's face is captured as its menu icon. Adjust it with <span class="ui">Face mesh only in icons</span> and <span class="ui">Icon face zoom</span>.</li>
+          <li><span class="ui">Generate face icons</span>: on upload, each reaction's face is captured as its menu icon. Adjust it with <span class="ui">Face in front in icons</span> and <span class="ui">Icon face zoom</span>.</li>
           <li><span class="ui">Radial menu preview</span>: the first slot is the "なでなで" button in your avatar's menu, followed by the page it opens.</li>
         </ul>
         <p>In-game, "なでなで" is added to your avatar's menu. It holds the overall ON/OFF and the reactions; with two or more zones, it holds one submenu per zone (that zone's ON/OFF and reactions). Choices are saved and synced.</p>
@@ -906,6 +908,7 @@
         <h2>Updates &amp; contact</h2>
         <div class="table-wrap"><table>
           <tr><th>Version</th><th>Date</th><th>Changes</th></tr>
+          <tr><td class="num">1.2.0</td><td class="num">2026/11/02</td><td>Face thumbnails and menu icons are framed on the eye bones, so faces are no longer cut off. "Face mesh only" is now "Face in front": the hair and outfit stay while eyes hidden by bangs show.</td></tr>
           <tr><td class="num">1.1.1</td><td class="num">2026/11/01</td><td>Added a Blendshapes view to the expression picker, so faces without a clip can be picked too.</td></tr>
           <tr><td class="num">1.1.0</td><td class="num">2026/11/01</td><td>Added proximity weight. Tabbed inspector. Improved New face tab (Pick an expression, blendshape sliders). Fixed the menu icon not showing in-game.</td></tr>
           <tr><td class="num">1.0.0</td><td class="num">2026/11/01</td><td>Released</td></tr>
