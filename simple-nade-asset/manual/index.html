@@ -177,6 +177,10 @@
   .note { padding: 12px 16px; border-radius: 12px; font-size: 15px; }
   .note.tip { background: var(--tip); color: var(--tip-ink); }
   .note.warn { background: var(--warn); color: var(--warn-ink); }
+  .quick { padding: 16px 18px; border-radius: 14px; background: var(--tip); color: var(--tip-ink); display: flex; flex-direction: column; gap: 8px; }
+  .quick strong { font-size: 19px; }
+  .quick ol { gap: 4px; }
+  .quick p { font-size: 15px; }
   .note b { margin-right: 6px; }
 
   figure { margin: 4px 0; display: flex; flex-direction: column; gap: 8px; }
@@ -298,6 +302,7 @@
         <p class="eyebrow">Eukkbi_Soft · VRChat Unity ツール</p>
         <h1>Simple Nade Asset マニュアル</h1>
         <p class="lead">なでると表情が変わる、Modular Avatar 対応のギミックです。プレハブをアバターに入れて、リアクションを選んで、そのままアップロードするだけです。</p>
+        <div class="quick"><strong>このままアップロードすれば大丈夫です！</strong><ol><li>プレハブをアバターの中に入れる</li><li>リアクションに表情を1つ選ぶ</li><li>いつも通りアップロードする</li></ol><p>Setup Outfit、アニメーター、メニュー、パラメータの設定は一切いりません。アップロード時に自動で作られ、アバターの元のファイルは変更されません。</p></div>
         <ul class="facts">
           <li><b>Ver.</b>1.2.0</li>
           <li><b>Unity</b>2022.3</li>
@@ -446,6 +451,9 @@
       <section id="ja-faq">
         <h2>よくある質問</h2>
         <div>
+          <details open><summary>プレハブを入れたあと、ほかに何か設定が必要ですか？</summary>
+            <p>いいえ。リアクションに表情を1つ選んだら、そのままアップロードしてください。接触判定・FXレイヤー・メニュー・パラメータはアップロード時に自動で作られます。アップロード前に動きを見たいときは、Gesture Manager の Play モードで確認できます。</p>
+          </details>
           <details><summary>なでても表情が変わりません</summary>
             <ul>
               <li>ピンクの球の位置と大きさがアバターに合っているか確認してください。</li>
@@ -507,6 +515,7 @@
         <p class="eyebrow">Eukkbi_Soft · VRChat 유니티 툴</p>
         <h1>Simple Nade Asset 설명서</h1>
         <p class="lead">쓰다듬으면 표정이 바뀌는 Modular Avatar 기믹이에요. 프리팹을 아바타에 넣고, 반응을 고르고, 그대로 업로드하면 끝이에요.</p>
+        <div class="quick"><strong>이대로 업로드하면 돼요!</strong><ol><li>프리팹을 아바타 안에 넣기</li><li>반응에 표정을 하나 고르기</li><li>평소처럼 업로드하기</li></ol><p>Setup Outfit, 애니메이터, 메뉴, 파라미터 설정은 하나도 필요 없어요. 업로드할 때 자동으로 만들어지고, 아바타의 원래 파일은 바뀌지 않아요.</p></div>
         <ul class="facts">
           <li><b>버전</b>1.2.0</li>
           <li><b>Unity</b>2022.3</li>
@@ -655,6 +664,9 @@
       <section id="ko-faq">
         <h2>자주 묻는 질문</h2>
         <div>
+          <details open><summary>프리팹을 넣은 뒤에 따로 설정할 게 있나요?</summary>
+            <p>없어요. 반응에 표정을 하나 고른 다음 그대로 업로드하세요. 접촉 판정·FX 레이어·메뉴·파라미터는 업로드할 때 자동으로 만들어져요. 업로드 전에 움직임을 보고 싶으면 Gesture Manager의 Play 모드로 확인할 수 있어요.</p>
+          </details>
           <details><summary>쓰다듬어도 표정이 안 바뀌어요</summary>
             <ul>
               <li>분홍색 구의 위치와 크기가 아바타에 맞는지 확인해 주세요.</li>
@@ -716,6 +728,7 @@
         <p class="eyebrow">Eukkbi_Soft · Unity tools for VRChat</p>
         <h1>Simple Nade Asset Manual</h1>
         <p class="lead">A Modular Avatar gimmick that changes your face when someone pats you. Drop the prefab into your avatar, pick a reaction and upload.</p>
+        <div class="quick"><strong>Just upload it as it is!</strong><ol><li>Put the prefab inside your avatar</li><li>Pick a face for the reaction</li><li>Upload as usual</li></ol><p>No Setup Outfit, animator, menu or parameter setup needed. Everything is generated when you upload, and your avatar's own files are never changed.</p></div>
         <ul class="facts">
           <li><b>Version</b>1.2.0</li>
           <li><b>Unity</b>2022.3</li>
@@ -864,6 +877,9 @@
       <section id="en-faq">
         <h2>FAQ</h2>
         <div>
+          <details open><summary>Do I need to set anything else up after adding the prefab?</summary>
+            <p>No. Pick a face for a reaction and upload as it is. Contacts, the FX layer, the menu and parameters are generated on upload. To see it before uploading, use Gesture Manager in Play mode.</p>
+          </details>
           <details><summary>Patting doesn't change my face</summary>
             <ul>
               <li>Check that the pink sphere's position and size fit your avatar.</li>
