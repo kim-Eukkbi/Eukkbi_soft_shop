@@ -304,7 +304,7 @@
         <p class="lead">なでると表情が変わる、Modular Avatar 対応のギミックです。プレハブをアバターに入れて、リアクションを選んで、そのままアップロードするだけです。</p>
         <div class="quick"><strong>このままアップロードすれば大丈夫です！</strong><ol><li>プレハブをアバターの中に入れる</li><li>リアクションに表情を1つ選ぶ</li><li>いつも通りアップロードする</li></ol><p>Setup Outfit、アニメーター、メニュー、パラメータの設定は一切いりません。アップロード時に自動で作られ、アバターの元のファイルは変更されません。</p></div>
         <ul class="facts">
-          <li><b>Ver.</b>1.2.0</li>
+          <li><b>Ver.</b>1.2.1</li>
           <li><b>Unity</b>2022.3</li>
           <li><b>VRChat SDK</b>Avatars 3.10 以上</li>
           <li><b>Modular Avatar</b>1.18 以上（NDMF 1.14 以上）</li>
@@ -359,7 +359,7 @@
           <li><b>音</b>：複数入れると毎回ランダムで1つ再生されます。<span class="ui">触れたとき1回</span> と <span class="ui">触れている間ループ</span> から選べます。周りの人にも聞こえます。</li>
         </ul>
         <p>リアクションが2つ以上あると、ゲーム内のメニューで選べます。<span class="ui">デフォルトのリアクション</span> は最初に選ばれている状態のリアクションです。メニューで選択中のボタンをもう一度押すと、デフォルトに戻ります。</p>
-        <figure><div class="shot"><img src="img/picker_ja.png" alt="表情を選ぶウィンドウ" width="738" height="523" loading="lazy"></div><figcaption>表情を選ぶウィンドウ：アバターの顔のサムネイルから選べます</figcaption></figure>
+        <figure><div class="shot"><img src="img/picker_ja.png" alt="表情を選ぶウィンドウ" width="738" height="523" loading="lazy"></div><figcaption>表情を選ぶウィンドウ：アバターの顔のサムネイルから選べます。顔がずれて見えるときは、画像の上を右ボタンでドラッグして位置を動かせます</figcaption></figure>
       </section>
 
       <section id="ja-behavior">
@@ -498,6 +498,7 @@
         <h2>更新履歴・お問い合わせ</h2>
         <div class="table-wrap"><table>
           <tr><th>バージョン</th><th>日付</th><th>内容</th></tr>
+          <tr><td class="num">1.2.1</td><td class="num">2026/11/02</td><td>顔の位置を、目のボーンではなく、まばたきシェイプが動かす部分（実際に描かれた目）から探すように改善。表情サムネイルの中心を目のすぐ下に変更。「表情を選ぶ」ウィンドウで、画像の上を右ボタンでドラッグすると顔の位置を動かせるように。</td></tr>
           <tr><td class="num">1.2.0</td><td class="num">2026/11/02</td><td>表情のサムネイルとメニューアイコンを目のボーンを基準に撮るようにし、顔が切れないように改善。「顔メッシュのみ」を「顔を前面に」に変更（髪や服を表示したまま、前髪に隠れた目が見えるように）。</td></tr>
           <tr><td class="num">1.1.1</td><td class="num">2026/11/01</td><td>表情を選ぶウィンドウに「ブレンドシェイプ」表示を追加（クリップのない表情も選べるように）。</td></tr>
           <tr><td class="num">1.1.0</td><td class="num">2026/11/01</td><td>近接ウェイトを追加。インスペクターをタブ式に整理。表情を作るタブを改善（表情を選ぶ・ブレンドシェイプのスライダー）。ゲーム内でメニューアイコンが表示されない問題を修正。</td></tr>
@@ -517,7 +518,7 @@
         <p class="lead">쓰다듬으면 표정이 바뀌는 Modular Avatar 기믹이에요. 프리팹을 아바타에 넣고, 반응을 고르고, 그대로 업로드하면 끝이에요.</p>
         <div class="quick"><strong>이대로 업로드하면 돼요!</strong><ol><li>프리팹을 아바타 안에 넣기</li><li>반응에 표정을 하나 고르기</li><li>평소처럼 업로드하기</li></ol><p>Setup Outfit, 애니메이터, 메뉴, 파라미터 설정은 하나도 필요 없어요. 업로드할 때 자동으로 만들어지고, 아바타의 원래 파일은 바뀌지 않아요.</p></div>
         <ul class="facts">
-          <li><b>버전</b>1.2.0</li>
+          <li><b>버전</b>1.2.1</li>
           <li><b>Unity</b>2022.3</li>
           <li><b>VRChat SDK</b>Avatars 3.10 이상</li>
           <li><b>Modular Avatar</b>1.18 이상 (NDMF 1.14 이상)</li>
@@ -572,7 +573,7 @@
           <li><b>소리</b>: 여러 개 넣으면 매번 무작위로 하나가 재생돼요. <span class="ui">닿을 때 한 번</span>과 <span class="ui">닿아 있는 동안 반복</span> 중에 고를 수 있어요. 주변 사람도 들을 수 있어요.</li>
         </ul>
         <p>반응이 2개 이상이면 게임 안 메뉴에서 고를 수 있어요. <span class="ui">기본 반응</span>은 처음에 선택된 상태로 시작하는 반응이에요. 메뉴에서 선택된 버튼을 다시 누르면 기본 반응으로 돌아가요.</p>
-        <figure><div class="shot"><img src="img/picker_ko.png" alt="표정 고르기 창" width="742" height="547" loading="lazy"></div><figcaption>표정 고르기 창: 아바타 얼굴 썸네일로 골라요</figcaption></figure>
+        <figure><div class="shot"><img src="img/picker_ko.png" alt="표정 고르기 창" width="742" height="547" loading="lazy"></div><figcaption>표정 고르기 창: 아바타 얼굴 썸네일로 골라요. 얼굴이 치우쳐 보이면 그림 위를 오른쪽 버튼으로 끌어 위치를 옮길 수 있어요</figcaption></figure>
       </section>
 
       <section id="ko-behavior">
@@ -711,6 +712,7 @@
         <h2>업데이트·문의</h2>
         <div class="table-wrap"><table>
           <tr><th>버전</th><th>날짜</th><th>내용</th></tr>
+          <tr><td class="num">1.2.1</td><td class="num">2026/11/02</td><td>얼굴 위치를 눈 본 대신 눈 깜빡임 셰이프가 움직이는 부분(실제로 그려진 눈)으로 찾도록 개선. 표정 썸네일의 중심을 눈 바로 아래로 변경. 표정 고르기 창에서 그림 위를 오른쪽 버튼으로 끌면 얼굴 위치를 옮길 수 있게.</td></tr>
           <tr><td class="num">1.2.0</td><td class="num">2026/11/02</td><td>표정 썸네일과 메뉴 아이콘을 눈 본 기준으로 찍어서 얼굴이 잘리지 않게 개선. "얼굴 메시만"을 "얼굴을 앞으로"로 변경 (머리카락과 옷은 그대로 보이고, 앞머리에 가린 눈이 보이게).</td></tr>
           <tr><td class="num">1.1.1</td><td class="num">2026/11/01</td><td>표정 고르기 창에 "블렌드셰이프" 보기 추가 (클립이 없는 표정도 고를 수 있게).</td></tr>
           <tr><td class="num">1.1.0</td><td class="num">2026/11/01</td><td>근접 가중치 추가. 인스펙터를 탭으로 정리. 표정 만들기 탭 개선 (표정 선택하기·블렌드셰이프 슬라이더). 게임 안에서 메뉴 아이콘이 안 보이던 문제 수정.</td></tr>
@@ -730,7 +732,7 @@
         <p class="lead">A Modular Avatar gimmick that changes your face when someone pats you. Drop the prefab into your avatar, pick a reaction and upload.</p>
         <div class="quick"><strong>Just upload it as it is!</strong><ol><li>Put the prefab inside your avatar</li><li>Pick a face for the reaction</li><li>Upload as usual</li></ol><p>No Setup Outfit, animator, menu or parameter setup needed. Everything is generated when you upload, and your avatar's own files are never changed.</p></div>
         <ul class="facts">
-          <li><b>Version</b>1.2.0</li>
+          <li><b>Version</b>1.2.1</li>
           <li><b>Unity</b>2022.3</li>
           <li><b>VRChat SDK</b>Avatars 3.10 or later</li>
           <li><b>Modular Avatar</b>1.18 or later (NDMF 1.14 or later)</li>
@@ -785,7 +787,7 @@
           <li><b>Sound</b>: with several clips one is picked at random each time. Choose <span class="ui">Once on touch</span> or <span class="ui">Loop while touched</span>. People nearby hear it too.</li>
         </ul>
         <p>With two or more reactions you can choose one in the in-game menu. The <span class="ui">Default reaction</span> is the one selected at first; pressing the selected button again in the menu goes back to it.</p>
-        <figure><div class="shot"><img src="img/picker_en.png" alt="Expression picker" width="741" height="523" loading="lazy"></div><figcaption>The picker: choose from thumbnails of your avatar's face</figcaption></figure>
+        <figure><div class="shot"><img src="img/picker_en.png" alt="Expression picker" width="741" height="523" loading="lazy"></div><figcaption>The picker: choose from thumbnails of your avatar's face. If the face sits off-centre, drag with the right mouse button over the pictures to move it</figcaption></figure>
       </section>
 
       <section id="en-behavior">
@@ -924,6 +926,7 @@
         <h2>Updates &amp; contact</h2>
         <div class="table-wrap"><table>
           <tr><th>Version</th><th>Date</th><th>Changes</th></tr>
+          <tr><td class="num">1.2.1</td><td class="num">2026/11/02</td><td>Faces are found from what the blink shape moves (the drawn eyes) instead of the eye bones. Face thumbnails are centred just under the eyes. In the expression picker, drag with the right mouse button over the pictures to move the face.</td></tr>
           <tr><td class="num">1.2.0</td><td class="num">2026/11/02</td><td>Face thumbnails and menu icons are framed on the eye bones, so faces are no longer cut off. "Face mesh only" is now "Face in front": the hair and outfit stay while eyes hidden by bangs show.</td></tr>
           <tr><td class="num">1.1.1</td><td class="num">2026/11/01</td><td>Added a Blendshapes view to the expression picker, so faces without a clip can be picked too.</td></tr>
           <tr><td class="num">1.1.0</td><td class="num">2026/11/01</td><td>Added proximity weight. Tabbed inspector. Improved New face tab (Pick an expression, blendshape sliders). Fixed the menu icon not showing in-game.</td></tr>
