@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="img/logo.png">
+<style>
+  :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  body { margin: 0; }
+  img { max-width: 100%; }
+</style>
+<title>Easy Ikiiki Manual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Jua&family=M+PLUS+Rounded+1c:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+  /* Layout: sticky header with the language switch; a table of contents beside one reading column (~720px);
+     Unity screenshots framed like editor windows. Colours follow the product's mint and sky icons. */
+  :root {
+    --bg: #f4fbf8;
+    --surface: #ffffff;
+    --surface-2: #e9f7f2;
+    --ink: #243433;
+    --muted: #5f7472;
+    --line: #d3ebe2;
+    --accent: #1f9f7f;
+    --accent-ink: #ffffff;
+    --accent-soft: #d4f3e8;
+    --lav: #3f7fd6;
+    --lav-soft: #e1edff;
+    --tip: #e6f6ef;
+    --tip-ink: #1d6a51;
+    --warn: #fff2dc;
+    --warn-ink: #855510;
+    --frame: #2b2830;
+
+    --font-display: "M PLUS Rounded 1c", "Noto Sans JP", "Hiragino Maru Gothic ProN", sans-serif;
+    --font-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+    --header-h: 60px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #111917; --surface: #18221f; --surface-2: #1f2c28; --ink: #e6f3ef; --muted: #a2b8b2; --line: #2b3a35;
+      --accent: #7fe0c4; --accent-ink: #0f2a22; --accent-soft: #1d3a32; --lav: #9cc3ff; --lav-soft: #1f2b3d;
+      --tip: #16302a; --tip-ink: #9fe0c8; --warn: #33270f; --warn-ink: #f2c879; --frame: #0d0a0f;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #111917; --surface: #18221f; --surface-2: #1f2c28; --ink: #e6f3ef; --muted: #a2b8b2; --line: #2b3a35;
+    --accent: #7fe0c4; --accent-ink: #0f2a22; --accent-soft: #1d3a32; --lav: #9cc3ff; --lav-soft: #1f2b3d;
+    --tip: #16302a; --tip-ink: #9fe0c8; --warn: #33270f; --warn-ink: #f2c879; --frame: #0d0a0f;
+    color-scheme: dark;
+  }
+  html[lang="ko"] {
+    --font-display: "Jua", "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+    --font-body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  }
+  html[lang="en"] { --font-body: "Noto Sans JP", "Segoe UI", system-ui, sans-serif; }
+
+  /* Other languages stay hidden even where a rule below sets display. */
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  body::before {
+    content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10;
+    background: var(--surface);
+  }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  :focus-visible { outline: 3px solid var(--lav); outline-offset: 2px; border-radius: 6px; }
+
+  /* ---- Header ---- */
+  .bar {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .bar-inner {
+    max-width: 1120px; margin: 0 auto; min-height: var(--header-h);
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding-block: 8px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1; }
+  .brand img { width: 34px; height: 34px; flex: none; }
+  .brand b { font-family: var(--font-display); font-weight: 800; font-size: 18px; line-height: 1.2; }
+  .brand small { display: block; color: var(--muted); font-size: 12px; letter-spacing: 0.04em; }
+  .langs { display: flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; flex: none; }
+  .langs button {
+    font: inherit; font-size: 14px; font-weight: 700; color: var(--muted); background: var(--surface);
+    border: 0; padding: 6px 14px; cursor: pointer;
+  }
+  .langs button + button { border-left: 1px solid var(--line); }
+  .langs button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+
+  /* ---- Page ---- */
+  .wrap {
+    max-width: 1120px; margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 32px 64px;
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px;
+  }
+  @media (min-width: 980px) { .wrap { grid-template-columns: 210px minmax(0, 1fr); gap: 48px; } }
+
+  .toc { min-width: 0; }
+  .toc ol {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px;
+  }
+  .toc a {
+    display: block; text-decoration: none; color: var(--ink); font-size: 14px; font-weight: 500;
+    padding: 4px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line);
+  }
+  .toc a:hover { border-color: var(--accent); color: var(--accent); }
+  @media (min-width: 980px) {
+    .toc nav { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--header-h) + 24px); }
+    .toc ol { flex-direction: column; flex-wrap: nowrap; gap: 2px; }
+    .toc a { border: 0; background: none; padding: 6px 10px; border-radius: 8px; }
+    .toc a:hover { background: var(--surface-2); }
+  }
+  .toc .label { font-size: 12px; letter-spacing: 0.08em; color: var(--muted); margin: 0 0 8px; font-weight: 700; }
+
+  main { min-width: 0; max-width: 760px; }
+  article { display: flex; flex-direction: column; gap: 56px; }
+  section { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + var(--header-h) + 16px); display: flex; flex-direction: column; gap: 16px; }
+
+  .hero { gap: 14px; }
+  .eyebrow { color: var(--accent); font-weight: 700; font-size: 14px; letter-spacing: 0.06em; margin: 0; }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.3; }
+  h1 { font-size: clamp(30px, 6vw, 44px); font-weight: 800; }
+  h2 {
+    font-size: 26px; font-weight: 800; padding-bottom: 10px; border-bottom: 2px solid var(--accent-soft);
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  h3 { font-size: 19px; font-weight: 700; margin-top: 8px; }
+  p { margin: 0; }
+  .lead { font-size: 18px; color: var(--muted); }
+  ul, ol { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 6px; }
+
+  .facts { display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+  .facts li {
+    font-size: 13px; font-weight: 500; padding: 4px 12px; border-radius: 999px;
+    background: var(--lav-soft); color: var(--ink);
+  }
+  .facts li b { color: var(--lav); margin-right: 6px; }
+
+  /* Install steps: a real sequence, so numbered. */
+  .steps { list-style: none; padding: 0; counter-reset: step; gap: 12px; }
+  .steps li {
+    counter-increment: step; position: relative; padding: 14px 16px 14px 60px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  }
+  .steps li::before {
+    content: counter(step); position: absolute; left: 14px; top: 12px;
+    width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--accent); color: var(--accent-ink); font-family: var(--font-display); font-weight: 800;
+  }
+
+  /* Inspector labels quoted in the text. */
+  .ui {
+    font-weight: 700; white-space: nowrap; padding: 0 6px; border-radius: 6px;
+    background: var(--surface-2); border: 1px solid var(--line); font-size: 0.92em;
+  }
+  code { font-family: var(--font-mono); font-size: 0.86em; background: var(--surface-2); padding: 1px 6px; border-radius: 6px; overflow-wrap: anywhere; }
+
+  .note { padding: 12px 16px; border-radius: 12px; font-size: 15px; }
+  .note.tip { background: var(--tip); color: var(--tip-ink); }
+  .note.warn { background: var(--warn); color: var(--warn-ink); }
+  .quick { padding: 16px 18px; border-radius: 14px; background: var(--tip); color: var(--tip-ink); display: flex; flex-direction: column; gap: 8px; }
+  .quick strong { font-size: 19px; }
+  .quick ol { gap: 4px; }
+  .quick p { font-size: 15px; }
+  .note b { margin-right: 6px; }
+
+  figure { margin: 4px 0; display: flex; flex-direction: column; gap: 8px; }
+  figure img { display: block; max-width: 100%; height: auto; border-radius: 10px; }
+  figure .shot { border: 6px solid var(--frame); border-radius: 14px; background: var(--frame); align-self: flex-start; max-width: 100%; }
+  figure .shot img { border-radius: 6px; }
+  figcaption { font-size: 13px; color: var(--muted); }
+  .pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; align-items: start; }
+  .near { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .near figure { margin: 0; }
+  .near img { aspect-ratio: 9 / 13; object-fit: cover; object-position: 50% 28%; width: 100%; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: var(--surface-2); font-weight: 700; white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 0 16px; }
+  details + details { margin-top: 8px; }
+  summary { cursor: pointer; font-weight: 700; padding: 12px 0; }
+  details[open] summary { border-bottom: 1px solid var(--line); margin-bottom: 10px; }
+  details > *:last-child { margin-bottom: 14px; }
+
+  .contact { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .contact .id { font-family: var(--font-mono); background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; user-select: all; }
+  .copy {
+    font: inherit; font-size: 13px; font-weight: 700; border: 1px solid var(--accent); color: var(--accent);
+    background: var(--surface); border-radius: 999px; padding: 4px 12px; cursor: pointer;
+  }
+
+  .foot {
+    text-align: center; color: var(--muted); font-size: 13px; padding-block: 24px 40px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+    border-top: 1px solid var(--line);
+  }
+  .icons { display: flex; flex-wrap: wrap; gap: 12px; }
+  .icons figure { margin: 0; align-items: center; width: 72px; text-align: center; }
+  .icons img { width: 56px; height: 56px; }
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="bar-inner">
+    <div class="brand">
+      <img src="img/logo.png" alt="" width="34" height="34">
+      <div>
+        <b>Easy Ikiiki</b>
+        <small data-lang="ja">マニュアル · Eukkbi_Soft</small>
+        <small data-lang="ko" hidden>설명서 · Eukkbi_Soft</small>
+        <small data-lang="en" hidden>Manual · Eukkbi_Soft</small>
+      </div>
+    </div>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" id="lang-ja" data-set-lang="ja" aria-pressed="true">日本語</button>
+      <button type="button" id="lang-ko" data-set-lang="ko" aria-pressed="false">한국어</button>
+      <button type="button" id="lang-en" data-set-lang="en" aria-pressed="false">English</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <aside class="toc">
+    <nav data-lang="ja" aria-label="目次">
+      <p class="label">目次</p>
+      <ol>
+        <li><a href="#ja-install">導入</a></li>
+        <li><a href="#ja-parts">パーツ</a></li>
+        <li><a href="#ja-body">からだ（呼吸）</a></li>
+        <li><a href="#ja-eyes">目</a></li>
+        <li><a href="#ja-face">表情</a></li>
+        <li><a href="#ja-bones">耳・しっぽ・翼</a></li>
+        <li><a href="#ja-pickers">見ながら選ぶ</a></li>
+        <li><a href="#ja-menu">メニュー</a></li>
+        <li><a href="#ja-how">しくみ</a></li>
+        <li><a href="#ja-faq">よくある質問</a></li>
+        <li><a href="#ja-info">注意事項・お問い合わせ</a></li>
+      </ol>
+    </nav>
+    <nav data-lang="ko" aria-label="목차" hidden>
+      <p class="label">목차</p>
+      <ol>
+        <li><a href="#ko-install">설치</a></li>
+        <li><a href="#ko-parts">부위</a></li>
+        <li><a href="#ko-body">몸 (숨쉬기)</a></li>
+        <li><a href="#ko-eyes">눈</a></li>
+        <li><a href="#ko-face">표정</a></li>
+        <li><a href="#ko-bones">귀·꼬리·날개</a></li>
+        <li><a href="#ko-pickers">보면서 고르기</a></li>
+        <li><a href="#ko-menu">메뉴</a></li>
+        <li><a href="#ko-how">동작 방식</a></li>
+        <li><a href="#ko-faq">자주 묻는 질문</a></li>
+        <li><a href="#ko-info">주의사항·문의</a></li>
+      </ol>
+    </nav>
+    <nav data-lang="en" aria-label="CONTENTS" hidden>
+      <p class="label">CONTENTS</p>
+      <ol>
+        <li><a href="#en-install">Install</a></li>
+        <li><a href="#en-parts">Parts</a></li>
+        <li><a href="#en-body">Body (breathing)</a></li>
+        <li><a href="#en-eyes">Eyes</a></li>
+        <li><a href="#en-face">Face</a></li>
+        <li><a href="#en-bones">Ears, tail, wings</a></li>
+        <li><a href="#en-pickers">Pick by eye</a></li>
+        <li><a href="#en-menu">Menu</a></li>
+        <li><a href="#en-how">How it works</a></li>
+        <li><a href="#en-faq">FAQ</a></li>
+        <li><a href="#en-info">Notes and contact</a></li>
+      </ol>
+    </nav>
+  </aside>
+  <main>
+    <article data-lang="ja">
+
+<section class="hero" id="ja-top">
+  <p class="eyebrow">EASY IKIIKI · イージーいきいき</p>
+  <h1>入れるだけで、アバターが呼吸しはじめる。</h1>
+  <p class="lead">胸からふわっと呼吸し、視線・まばたき・眉や口角・耳・しっぽ・翼がランダムに動く待機モーションのギミックです。</p>
+  <ul class="facts"><li><b>Unity</b>2022.3</li><li><b>VRChat SDK</b>3.10+</li><li><b>Modular Avatar</b>1.18+</li><li><b>NDMF</b>1.14+</li><li><b>Humanoid</b></li></ul>
+  <div class="quick"><strong>3 ステップ</strong><ol><li><code>Easy_Ikiiki_Asset.prefab</code> をアバターの中に入れる</li><li>使いたいパーツのカードを押して <span class="ui">追加</span></li><li>そのままアップロード</li></ol></div>
+</section>
+
+<section id="ja-install">
+  <h2>導入</h2>
+  <ol class="steps">
+    <li>VCC（VRChat Creator Companion）で <b>Modular Avatar</b> をプロジェクトに追加します（NDMF も一緒に入ります）。</li>
+    <li>unitypackage を Unity にドラッグ＆ドロップしてインポートします。<code>Assets/Eukkbi_Soft/Easy_Ikiiki_Asset</code> ができます。</li>
+    <li><code>Easy_Ikiiki_Asset.prefab</code> を Hierarchy のアバターの中に入れます。場所はアバターの中ならどこでも大丈夫です。</li>
+    <li>インスペクターでパーツを選び、アップロードします。Setup Outfit は不要です。</li>
+  </ol>
+  <p class="note tip"><b>ヒント</b>右上の <span class="ui">?</span> を押すと、項目ごとの説明が表示されます。言語は右上のメニューで 日本語 / 한국어 / English を切り替えられます。</p>
+</section>
+
+<section id="ja-parts">
+  <h2>パーツ</h2>
+  <p>インスペクターの上にパーツのカードが並んでいます。<b>からだ（呼吸）</b>と<b>メニュー</b>は最初から入っていて、ほかのパーツはカードの <span class="ui">追加</span> で入れ、<span class="ui">外す</span> で外します。カードを押すと、その下にそのパーツの設定が表示されます。</p>
+  <figure><div class="shot"><img src="img/inspector_ja.png" alt="Easy Ikiiki のインスペクター" width="639" height="856" loading="lazy"></div><figcaption>パーツのカードと「目」の設定。パーツごとに色が分かれています。</figcaption></figure>
+  <p>カードの左下には、アバターで見つかったもの（<span class="ui">ボーン 2 個</span>、<span class="ui">シェイプあり</span> など）が表示されます。見つからないパーツも追加でき、あとで <span class="ui">ボーンを認識</span> や <span class="ui">ボーンを見ながら選ぶ</span> で指定できます。</p>
+</section>
+
+<section id="ja-body">
+  <h2>からだ（呼吸）</h2>
+  <p>胸の前・上・横がふわっとふくらみ、背中側は動きません。Modular Avatar で着せた衣装も胸に合わせて動きます。Humanoid ボーンは回さないので、ゲーム内の IK でも腕や足がずれません。</p>
+  <ul>
+    <li><span class="ui">強さ (%)</span>：呼吸の深さ。右のグラフで 1 回の呼吸の形（吸う・吐く）を変えられ、<span class="ui">↺</span> で元に戻ります。</li>
+    <li><span class="ui">1回の呼吸の長さ (秒)</span> と <span class="ui">速さのゆらぎ (%)</span>：呼吸の速さと、そのばらつき。</li>
+    <li><span class="ui">標準の待機モーションを止める</span>（標準でオン）：Additive レイヤーを設定していないアバターは、ゲーム内で VRChat 標準の待機モーションで腕や胸が揺れます（Gesture Manager では見えません）。オンにすると、この揺れを止めて呼吸だけを残します。</li>
+  </ul>
+</section>
+
+<section id="ja-eyes">
+  <h2>目</h2>
+  <p>顔メッシュは自動で見つかります（<span class="ui">顔メッシュ (自動)</span>）。違うメッシュを使う場合だけ指定してください。</p>
+  <h3>視線のゆらぎ</h3>
+  <p>ときどき視線が動いて、少し止まって戻ります。<span class="ui">止まる時間 (秒)</span> で止まる長さの範囲を決めます。上・下・左・右のシェイプは自動で見つかり、違う場合は <span class="ui">シェイプを見ながら選ぶ</span> で選び直せます。</p>
+  <h3>瞳のうるうる</h3>
+  <p>目のハイライトが、ゆっくり大きくなったり光ったりします。</p>
+  <h3>自然なまばたき</h3>
+  <p>ビルド時に VRChat 標準のまばたきをオフにして、代わりにランダムなまばたき（ふつう・2 回・ゆっくりなど）をします。目が上下を見るときにまぶたがついてくる VRChat の機能はそのままです。</p>
+  <p class="note warn"><b>独自のまばたきがあるアバター</b>アバター自身のアニメーションでまばたきしている場合は、<span class="ui">イージーいきいきだけ</span> / <span class="ui">アバターのものだけ</span> / <span class="ui">両方</span> から選ぶボックスが表示されます。あとから「自然なまばたき」の下でいつでも変えられます。</p>
+</section>
+
+<section id="ja-face">
+  <h2>表情</h2>
+  <p><b>眉</b>がぴくっと上がったり困り眉になったり、<b>口</b>の口角がふっと上がったりします。動かすシェイプは自動で見つかり、シェイプごとに <span class="ui">動かすシェイプ（最大 %）</span> のスライダーで強さを変えられます。口はしゃべっている間は動きません。</p>
+  <p class="note tip"><b>表情中はお休み</b>ジェスチャーや FaceEmo などでアバターの表情が出ている間は、視線・まばたき・眉・口の動きが自動で止まり、表情が戻ると再開します。目を閉じた表情でまぶたが二重に閉じることもありません。</p>
+</section>
+
+<section id="ja-bones">
+  <h2>耳・しっぽ・翼</h2>
+  <p>耳はぴくっ・ふるふる・ぴんと立つ、しっぽはゆらゆら・ぶんっ・のんびり、翼ははばたき・パタパタ・広げる動きを、ランダムに組み合わせます。左右の耳は別々のタイミングで動きます。</p>
+  <ul>
+    <li>ボーンは名前（ear・耳・tail・しっぽ・wing・羽 など）で自動で見つかります。衣装やヘアで後から足した耳・しっぽも、Modular Avatar で付く場所を考えて探します。</li>
+    <li>見つからない・違う場合は <span class="ui">ボーンを認識</span>（もう一度探して決める）か <span class="ui">ボーンを見ながら選ぶ</span> を使ってください。</li>
+    <li><span class="ui">アバター標準の耳・しっぽ・翼の動きを止める</span>（標準でオン）：アバター自身のアニメーションが耳やしっぽを動かしている場合、その動きを外して重ならないようにします。</li>
+    <li>PhysBone がある場合はビルド時に「Is Animated」を自動でオンにするので、動きに揺れが自然に加わります。</li>
+  </ul>
+</section>
+
+<section id="ja-pickers">
+  <h2>見ながら選ぶ</h2>
+  <h3>ボーンを見ながら選ぶ</h3>
+  <p>アバターのワイヤーフレームの上にボーンが点で表示されます。おすすめのボーンはパーツの色、選んだボーンは白で表示され、クリックで選択・解除します。右のリストでは名前で検索できます。<span class="ui">適用</span> で決定します。</p>
+  <figure><div class="shot"><img src="img/bonepicker_ja.png" alt="ボーンを見ながら選ぶウィンドウ" width="1000" height="640" loading="lazy"></div></figure>
+  <h3>シェイプを見ながら選ぶ</h3>
+  <p>上の枠（視線のゆらぎ・瞳のうるうる・自然なまばたき・表情）を選び、顔のサムネイルから選びます。マウスを乗せると、左の大きなプレビューでそのシェイプが動きます。<span class="ui">すべて表示</span> で候補以外のシェイプも表示できます。<span class="ui">適用</span> で全部の枠をまとめて保存し、何も選ばなかった枠は自動のままです。</p>
+  <figure><div class="shot"><img src="img/shapepicker_ja.png" alt="シェイプを見ながら選ぶウィンドウ" width="1100" height="720" loading="lazy"></div></figure>
+</section>
+
+<section id="ja-menu">
+  <h2>メニュー</h2>
+  <p>Expression メニューに <b>いきいき</b> サブメニューができます（名前は <span class="ui">メニュー名</span> で変更可）。中には全体の ON/OFF と、パーツごとの ON/OFF（呼吸・耳・しっぽ・翼・目・表情）が入ります。選択は保存・同期されます。</p>
+  <div class="icons">
+    <figure><img src="img/icon_onoff.png" alt=""><figcaption>ON/OFF</figcaption></figure>
+    <figure><img src="img/icon_breath.png" alt=""><figcaption>呼吸</figcaption></figure>
+    <figure><img src="img/icon_ears.png" alt=""><figcaption>耳</figcaption></figure>
+    <figure><img src="img/icon_tail.png" alt=""><figcaption>しっぽ</figcaption></figure>
+    <figure><img src="img/icon_wings.png" alt=""><figcaption>翼</figcaption></figure>
+    <figure><img src="img/icon_eyes.png" alt=""><figcaption>目</figcaption></figure>
+    <figure><img src="img/icon_face.png" alt=""><figcaption>表情</figcaption></figure>
+  </div>
+  <ul>
+    <li><span class="ui">メニューアイコン</span>：空のままなら同梱のアイコンを使います。</li>
+    <li><span class="ui">最初から ON</span>：アップロード直後に ON にするかどうか。</li>
+    <li><span class="ui">機能ごとの ON/OFF を追加</span>：オフにすると全体の ON/OFF だけになり、同期パラメータは 1 bit になります。</li>
+    <li><span class="ui">同期パラメータ</span>：使う bit 数（最大 7 bit）が表示されます。</li>
+  </ul>
+</section>
+
+<section id="ja-how">
+  <h2>しくみ</h2>
+  <ul>
+    <li><b>ぜんぶランダム</b>：次に動くまでの時間、動きの大きさ、視線の向き、まばたきの種類が、毎回その場で決まります。見る人それぞれの画面で自然にばらつきます。</li>
+    <li><b>非破壊</b>：アップロード時に NDMF が FX レイヤーなどを作り、設定用のコンポーネントは消えます。アバターの元のファイルは変更しません。プレハブを消せば元どおりです。</li>
+    <li><b>表情ギミックとの共存</b>：顔のレイヤーは FX のいちばん最後に入るので、FaceEmo などに上書きされません。</li>
+    <li>Write Defaults ON / OFF どちらのアバターでも動きます。</li>
+  </ul>
+</section>
+
+<section id="ja-faq">
+  <h2>よくある質問</h2>
+  <details><summary>耳・しっぽ・翼が見つからない</summary><p>パーツの設定で <span class="ui">ボーンを見ながら選ぶ</span> を開き、根元のボーンをクリックして <span class="ui">適用</span> してください。それでも動かない場合は、下の診断ツールで情報を送ってください。</p></details>
+  <details><summary>視線が逆の方向に動く・違う表情になる</summary><p>「目」の <span class="ui">シェイプを見ながら選ぶ</span> で、上・下・左・右に正しいシェイプを選び直してください。左右はアバターから見た向きです。</p></details>
+  <details><summary>まばたきが二重になる</summary><p>アバター独自のまばたきと重なっています。「自然なまばたき」の下の選択で <span class="ui">イージーいきいきだけ</span> か <span class="ui">アバターのものだけ</span> を選んでください。</p></details>
+  <details><summary>フェイストラッキングを使っている</summary><p>トラッキング中はゲーム内メニューで「目」と「表情」をオフにしてください。いつも使うなら、そのパーツを外しても大丈夫です。VRChat 標準のアイトラッキングでまぶたを動かしている場合は、「自然なまばたき」の <span class="ui">使う</span> をオフにしてください。</p></details>
+  <details><summary>Unity では見えるのにゲームで動きが違う</summary><p>Gesture Manager でも確認できますが、VRChat 標準の待機モーションはゲーム内でしか再生されません。<span class="ui">標準の待機モーションを止める</span> をオンにしてください。</p></details>
+  <details><summary>外したい</summary><p>アバターの中の Easy_Ikiiki_Asset を削除するだけです。アバターの元のファイルは変わっていません。</p></details>
+</section>
+
+<section id="ja-info">
+  <h2>注意事項・お問い合わせ</h2>
+  <ul><li>1 つのアバターに 1 つまで使えます。</li><li>本商品の使用によって生じたトラブルについて、作者は責任を負いかねます。</li><li>利用規約：<a href="../terms/">Easy Ikiiki 利用規約</a></li></ul>
+  <p class="note tip"><b>うまく動かないとき</b>無料の <a href="https://eukkbi.booth.pm/items/9093824">Eukkbi_Soft アバター診断ツール</a> で情報を送っていただくか、「メニュー」パーツの <span class="ui">診断情報をコピー</span> の内容をお送りください。アバターに合わせて直せます。</p>
+  <h3>更新履歴</h3><ul><li>v1.0.0（2026/11/15）公開</li></ul>
+  <h3>お問い合わせ</h3>
+  <div class="contact"><span>BOOTH のメッセージ / Discord</span><span class="id">eukkbi_soft</span><button type="button" class="copy" data-copy="eukkbi_soft" data-done="コピーしました">コピー</button></div>
+</section>
+
+    </article>
+    <article data-lang="ko" hidden>
+
+<section class="hero" id="ko-top">
+  <p class="eyebrow">EASY IKIIKI · 이지 이키이키</p>
+  <h1>넣기만 하면, 아바타가 숨을 쉬기 시작해요.</h1>
+  <p class="lead">가슴부터 부드럽게 숨쉬고, 시선·깜빡임·눈썹과 입꼬리·귀·꼬리·날개가 랜덤으로 움직이는 대기 모션 기믹이에요.</p>
+  <ul class="facts"><li><b>Unity</b>2022.3</li><li><b>VRChat SDK</b>3.10+</li><li><b>Modular Avatar</b>1.18+</li><li><b>NDMF</b>1.14+</li><li><b>Humanoid</b></li></ul>
+  <div class="quick"><strong>3단계</strong><ol><li><code>Easy_Ikiiki_Asset.prefab</code>을 아바타 안에 넣기</li><li>원하는 부위의 카드에서 <span class="ui">추가</span></li><li>그대로 업로드</li></ol></div>
+</section>
+
+<section id="ko-install">
+  <h2>설치</h2>
+  <ol class="steps">
+    <li>VCC(VRChat Creator Companion)로 프로젝트에 <b>Modular Avatar</b>를 추가해요 (NDMF도 같이 들어가요).</li>
+    <li>unitypackage를 Unity에 끌어다 놓아 임포트해요. <code>Assets/Eukkbi_Soft/Easy_Ikiiki_Asset</code>이 생겨요.</li>
+    <li><code>Easy_Ikiiki_Asset.prefab</code>을 Hierarchy의 아바타 안에 넣어요. 아바타 안이면 어디든 괜찮아요.</li>
+    <li>인스펙터에서 부위를 고르고 업로드해요. Setup Outfit은 필요 없어요.</li>
+  </ol>
+  <p class="note tip"><b>팁</b>오른쪽 위 <span class="ui">?</span>를 누르면 항목마다 설명이 나와요. 언어는 오른쪽 위 메뉴에서 日本語 / 한국어 / English로 바꿀 수 있어요.</p>
+</section>
+
+<section id="ko-parts">
+  <h2>부위</h2>
+  <p>인스펙터 위쪽에 부위 카드가 있어요. <b>몸(숨쉬기)</b>과 <b>메뉴</b>는 기본으로 들어 있고, 다른 부위는 카드의 <span class="ui">추가</span>로 넣고 <span class="ui">제거</span>로 빼요. 카드를 누르면 그 아래에 해당 부위의 설정이 나와요.</p>
+  <figure><div class="shot"><img src="img/inspector_ko.png" alt="Easy Ikiiki 인스펙터" width="639" height="856" loading="lazy"></div><figcaption>부위 카드와 "눈" 설정. 부위마다 색이 달라요.</figcaption></figure>
+  <p>카드 왼쪽 아래에는 아바타에서 찾은 것(<span class="ui">본 2개</span>, <span class="ui">셰이프 있음</span> 등)이 표시돼요. 찾지 못한 부위도 추가할 수 있고, 나중에 <span class="ui">본 인식하기</span>나 <span class="ui">본 보면서 고르기</span>로 지정하면 돼요.</p>
+</section>
+
+<section id="ko-body">
+  <h2>몸 (숨쉬기)</h2>
+  <p>가슴의 앞·위·옆이 부드럽게 부풀고 등 쪽은 움직이지 않아요. Modular Avatar로 입힌 의상도 가슴에 맞춰 움직여요. Humanoid 본을 돌리지 않아서 게임 속 IK에서도 팔다리가 어긋나지 않아요.</p>
+  <ul>
+    <li><span class="ui">강도 (%)</span>: 숨의 깊이. 오른쪽 그래프로 숨 한 번의 모양(들숨·날숨)을 바꿀 수 있고, <span class="ui">↺</span>로 되돌려요.</li>
+    <li><span class="ui">한 번 숨쉬는 시간 (초)</span>와 <span class="ui">속도 흔들림 (%)</span>: 숨 쉬는 속도와 그 흔들림.</li>
+    <li><span class="ui">기본 대기 움직임 끄기</span> (기본 켜짐): Additive 레이어를 따로 설정하지 않은 아바타는 게임 안에서 VRChat 기본 대기 애니메이션 때문에 팔과 가슴이 흔들려요 (Gesture Manager에서는 안 보여요). 켜 두면 이 흔들림을 없애고 숨쉬기만 남겨요.</li>
+  </ul>
+</section>
+
+<section id="ko-eyes">
+  <h2>눈</h2>
+  <p>얼굴 메시는 자동으로 찾아요(<span class="ui">얼굴 메시 (자동)</span>). 다른 메시를 쓸 때만 지정해 주세요.</p>
+  <h3>시선 흔들림</h3>
+  <p>가끔 시선이 움직였다가 잠깐 머물고 돌아와요. <span class="ui">머무는 시간 (초)</span>으로 머무는 시간의 범위를 정해요. 위·아래·왼쪽·오른쪽 셰이프는 자동으로 찾고, 다르면 <span class="ui">셰이프 보면서 고르기</span>로 다시 고를 수 있어요.</p>
+  <h3>눈 반짝임</h3>
+  <p>눈 하이라이트가 천천히 커지거나 반짝여요.</p>
+  <h3>자연 깜빡임</h3>
+  <p>빌드할 때 VRChat 기본 깜빡임을 끄고, 대신 랜덤한 깜빡임(보통·두 번·천천히 등)을 해요. 눈이 위아래를 볼 때 눈꺼풀이 따라오는 VRChat 기능은 그대로예요.</p>
+  <p class="note warn"><b>자체 깜빡임이 있는 아바타</b>아바타가 자체 애니메이션으로 깜빡이면 <span class="ui">이지 이키이키만</span> / <span class="ui">아바타 것만</span> / <span class="ui">둘 다</span> 중에서 고르는 상자가 나와요. 나중에 "자연 깜빡임" 아래에서 언제든 바꿀 수 있어요.</p>
+</section>
+
+<section id="ko-face">
+  <h2>표정</h2>
+  <p><b>눈썹</b>이 까딱 올라가거나 곤란한 모양이 되고, <b>입</b>꼬리가 살짝 올라가요. 움직일 셰이프는 자동으로 찾고, 셰이프마다 <span class="ui">움직일 셰이프 (최대 %)</span> 슬라이더로 세기를 바꿀 수 있어요. 말하는 동안에는 입이 움직이지 않아요.</p>
+  <p class="note tip"><b>표정 중에는 쉬어요</b>제스처나 FaceEmo 등으로 아바타 표정이 나오는 동안에는 시선·깜빡임·눈썹·입 움직임이 자동으로 멈추고, 표정이 돌아오면 다시 움직여요. 눈 감은 표정에서 눈꺼풀이 두 번 감기는 일도 없어요.</p>
+</section>
+
+<section id="ko-bones">
+  <h2>귀·꼬리·날개</h2>
+  <p>귀는 쫑긋·털기·세우기, 꼬리는 살랑·휙·느긋하게, 날개는 퍼덕·파닥파닥·펼치기를 랜덤으로 섞어요. 왼쪽과 오른쪽 귀는 각자 다른 타이밍에 움직여요.</p>
+  <ul>
+    <li>본은 이름(ear·耳·tail·しっぽ·wing·羽 등)으로 자동으로 찾아요. 의상이나 헤어로 나중에 붙인 귀·꼬리도 Modular Avatar로 붙는 위치를 생각해서 찾아요.</li>
+    <li>못 찾거나 틀리면 <span class="ui">본 인식하기</span>(다시 찾아서 정하기)나 <span class="ui">본 보면서 고르기</span>를 써 주세요.</li>
+    <li><span class="ui">아바타 기본 귀·꼬리·날개 움직임 끄기</span> (기본 켜짐): 아바타 자체 애니메이션이 귀나 꼬리를 움직이면, 그 움직임을 빼서 겹치지 않게 해요.</li>
+    <li>PhysBone이 있으면 빌드할 때 "Is Animated"를 자동으로 켜서, 움직임 위에 흔들림이 자연스럽게 더해져요.</li>
+  </ul>
+</section>
+
+<section id="ko-pickers">
+  <h2>보면서 고르기</h2>
+  <h3>본 보면서 고르기</h3>
+  <p>아바타 와이어프레임 위에 본이 점으로 표시돼요. 추천 본은 부위 색, 고른 본은 흰색이고 클릭으로 고르거나 뺄 수 있어요. 오른쪽 목록에서 이름으로 검색할 수도 있어요. <span class="ui">적용</span>을 누르면 정해져요.</p>
+  <figure><div class="shot"><img src="img/bonepicker_ko.png" alt="본 보면서 고르기 창" width="1000" height="640" loading="lazy"></div></figure>
+  <h3>셰이프 보면서 고르기</h3>
+  <p>위쪽 칸(시선 흔들림·눈 반짝임·자연 깜빡임·표정)을 고르고 얼굴 썸네일에서 골라요. 마우스를 올리면 왼쪽 큰 미리보기에서 그 셰이프가 움직여요. <span class="ui">모든 셰이프 보기</span>로 후보가 아닌 셰이프도 볼 수 있어요. <span class="ui">적용</span>을 누르면 모든 칸이 한 번에 저장되고, 고르지 않은 칸은 자동 그대로예요.</p>
+  <figure><div class="shot"><img src="img/shapepicker_ko.png" alt="셰이프 보면서 고르기 창" width="1100" height="720" loading="lazy"></div></figure>
+</section>
+
+<section id="ko-menu">
+  <h2>메뉴</h2>
+  <p>Expression 메뉴에 <b>いきいき</b> 서브메뉴가 생겨요(이름은 <span class="ui">메뉴 이름</span>에서 변경). 안에는 전체 ON/OFF와 부위별 ON/OFF(숨쉬기·귀·꼬리·날개·눈·표정)가 들어가요. 선택은 저장·동기화돼요.</p>
+  <div class="icons">
+    <figure><img src="img/icon_onoff.png" alt=""><figcaption>ON/OFF</figcaption></figure>
+    <figure><img src="img/icon_breath.png" alt=""><figcaption>숨쉬기</figcaption></figure>
+    <figure><img src="img/icon_ears.png" alt=""><figcaption>귀</figcaption></figure>
+    <figure><img src="img/icon_tail.png" alt=""><figcaption>꼬리</figcaption></figure>
+    <figure><img src="img/icon_wings.png" alt=""><figcaption>날개</figcaption></figure>
+    <figure><img src="img/icon_eyes.png" alt=""><figcaption>눈</figcaption></figure>
+    <figure><img src="img/icon_face.png" alt=""><figcaption>표정</figcaption></figure>
+  </div>
+  <ul>
+    <li><span class="ui">메뉴 아이콘</span>: 비워 두면 동봉된 아이콘을 써요.</li>
+    <li><span class="ui">처음부터 켜 두기</span>: 업로드 직후 켜 둘지 정해요.</li>
+    <li><span class="ui">기능별 ON/OFF 넣기</span>: 끄면 전체 ON/OFF만 남고 동기화 파라미터가 1 bit가 돼요.</li>
+    <li><span class="ui">동기화 파라미터</span>: 쓰는 bit 수(최대 7 bit)가 표시돼요.</li>
+  </ul>
+</section>
+
+<section id="ko-how">
+  <h2>동작 방식</h2>
+  <ul>
+    <li><b>전부 랜덤</b>: 다음 움직임까지의 시간, 움직임 크기, 시선 방향, 깜빡임 종류가 매번 그 자리에서 정해져요. 보는 사람마다 각자의 화면에서 자연스럽게 달라져요.</li>
+    <li><b>비파괴</b>: 업로드할 때 NDMF가 FX 레이어 등을 만들고, 설정용 컴포넌트는 지워요. 아바타 원본 파일은 바꾸지 않아요. 프리팹을 지우면 원래대로예요.</li>
+    <li><b>표정 기믹과 함께</b>: 얼굴 레이어는 FX 맨 마지막에 들어가서 FaceEmo 등에 덮이지 않아요.</li>
+    <li>Write Defaults ON / OFF 어느 아바타에서도 움직여요.</li>
+  </ul>
+</section>
+
+<section id="ko-faq">
+  <h2>자주 묻는 질문</h2>
+  <details><summary>귀·꼬리·날개를 못 찾아요</summary><p>부위 설정에서 <span class="ui">본 보면서 고르기</span>를 열고 뿌리 본을 클릭한 뒤 <span class="ui">적용</span>해 주세요. 그래도 안 움직이면 아래 진단 도구로 정보를 보내 주세요.</p></details>
+  <details><summary>시선이 반대로 가거나 다른 표정이 돼요</summary><p>"눈"의 <span class="ui">셰이프 보면서 고르기</span>에서 위·아래·왼쪽·오른쪽에 맞는 셰이프를 다시 골라 주세요. 왼쪽·오른쪽은 아바타 기준이에요.</p></details>
+  <details><summary>두 번 깜빡여요</summary><p>아바타 자체 깜빡임과 겹친 거예요. "자연 깜빡임" 아래 선택에서 <span class="ui">이지 이키이키만</span>이나 <span class="ui">아바타 것만</span>을 골라 주세요.</p></details>
+  <details><summary>페이스 트래킹을 써요</summary><p>트래킹 중에는 게임 안 메뉴에서 "눈"과 "표정"을 꺼 주세요. 늘 쓴다면 그 부위를 빼도 돼요. VRChat 기본 아이 트래킹으로 눈꺼풀을 움직이는 경우에는 "자연 깜빡임"의 <span class="ui">사용</span>을 꺼 주세요.</p></details>
+  <details><summary>Unity에서는 괜찮은데 게임에서 움직임이 달라요</summary><p>VRChat 기본 대기 애니메이션은 게임 안에서만 재생돼요. <span class="ui">기본 대기 움직임 끄기</span>를 켜 주세요.</p></details>
+  <details><summary>빼고 싶어요</summary><p>아바타 안의 Easy_Ikiiki_Asset을 지우기만 하면 돼요. 아바타 원본 파일은 바뀌지 않았어요.</p></details>
+</section>
+
+<section id="ko-info">
+  <h2>주의사항·문의</h2>
+  <ul><li>한 아바타에 하나만 쓸 수 있어요.</li><li>이 상품을 사용해 생긴 문제에 대해 제작자는 책임지지 않습니다.</li><li>이용 약관: <a href="../terms/">Easy Ikiiki 이용 약관</a></li></ul>
+  <p class="note tip"><b>잘 안 될 때</b>무료 <a href="https://eukkbi.booth.pm/items/9093824">Eukkbi_Soft 아바타 진단 도구</a>로 정보를 보내 주시거나, "메뉴" 부위의 <span class="ui">진단 정보 복사</span> 내용을 보내 주세요. 아바타에 맞게 고쳐 드릴게요.</p>
+  <h3>업데이트 이력</h3><ul><li>v1.0.0 (2026/11/15) 공개</li></ul>
+  <h3>문의</h3>
+  <div class="contact"><span>BOOTH 메시지 / Discord</span><span class="id">eukkbi_soft</span><button type="button" class="copy" data-copy="eukkbi_soft" data-done="복사했어요">복사</button></div>
+</section>
+
+    </article>
+    <article data-lang="en" hidden>
+
+<section class="hero" id="en-top">
+  <p class="eyebrow">EASY IKIIKI</p>
+  <h1>Drop it in, and your avatar starts to breathe.</h1>
+  <p class="lead">An idle-motion gimmick: soft breathing from the chest, with gaze, blinks, brows and mouth, ears, tail and wings moving at random.</p>
+  <ul class="facts"><li><b>Unity</b>2022.3</li><li><b>VRChat SDK</b>3.10+</li><li><b>Modular Avatar</b>1.18+</li><li><b>NDMF</b>1.14+</li><li><b>Humanoid</b></li></ul>
+  <div class="quick"><strong>3 steps</strong><ol><li>Put <code>Easy_Ikiiki_Asset.prefab</code> in your avatar</li><li>Press <span class="ui">Add</span> on the cards of the parts you want</li><li>Upload</li></ol></div>
+</section>
+
+<section id="en-install">
+  <h2>Install</h2>
+  <ol class="steps">
+    <li>Add <b>Modular Avatar</b> to the project with VCC (VRChat Creator Companion); NDMF comes with it.</li>
+    <li>Drag the unitypackage into Unity to import it. You get <code>Assets/Eukkbi_Soft/Easy_Ikiiki_Asset</code>.</li>
+    <li>Put <code>Easy_Ikiiki_Asset.prefab</code> inside your avatar in the Hierarchy. Anywhere inside the avatar works.</li>
+    <li>Choose parts in the inspector and upload. No Setup Outfit needed.</li>
+  </ol>
+  <p class="note tip"><b>Tip</b>Press <span class="ui">?</span> at the top right for a note on every setting. The menu next to it switches the inspector between 日本語 / 한국어 / English.</p>
+</section>
+
+<section id="en-parts">
+  <h2>Parts</h2>
+  <p>The inspector starts with a row of part cards. <b>Body (breathing)</b> and <b>Menu</b> are always in; add other parts with <span class="ui">Add</span> on their card and take them out with <span class="ui">Remove</span>. Clicking a card shows that part's settings below.</p>
+  <figure><div class="shot"><img src="img/inspector_en.png" alt="The Easy Ikiiki inspector" width="639" height="856" loading="lazy"></div><figcaption>Part cards and the Eyes settings. Each part has its own colour.</figcaption></figure>
+  <p>The bottom left of each card shows what was found on the avatar (<span class="ui">2 bone(s)</span>, <span class="ui">shapes found</span> and so on). Parts that weren't found can still be added; set them later with <span class="ui">Detect bones</span> or <span class="ui">Pick by eye</span>.</p>
+</section>
+
+<section id="en-body">
+  <h2>Body (breathing)</h2>
+  <p>The front, top and sides of the chest rise softly while the back stays still, and outfits added with Modular Avatar move along. No humanoid bone is turned, so in-game IK never pulls the arms or legs out of place.</p>
+  <ul>
+    <li><span class="ui">Strength (%)</span>: how deep each breath is. The graph beside it shapes one breath (in and out); <span class="ui">↺</span> resets it.</li>
+    <li><span class="ui">Seconds per breath</span> and <span class="ui">Pace variation (%)</span>: the pace and how much it wanders.</li>
+    <li><span class="ui">Turn off the default idle sway</span> (on by default): avatars without their own Additive layer get VRChat's default idle in game, which sways the arms and chest (Gesture Manager doesn't show it). This stops it so only the breathing remains.</li>
+  </ul>
+</section>
+
+<section id="en-eyes">
+  <h2>Eyes</h2>
+  <p>The face mesh is found automatically (<span class="ui">Face mesh (Auto)</span>); set it only to use another mesh.</p>
+  <h3>Gaze drift</h3>
+  <p>Now and then the eyes glance somewhere, rest a moment and come back. <span class="ui">Rest time (s)</span> sets how long they rest. The up, down, left and right shapes are found for you; if they're wrong, pick them again with <span class="ui">Pick shapes by eye</span>.</p>
+  <h3>Eye sparkle</h3>
+  <p>The eye highlights slowly grow and shimmer.</p>
+  <h3>Natural blink</h3>
+  <p>The build turns off VRChat's own blink and blinks at random in its place (single, double, slow and so on). VRChat's eyelids following the eyes up and down stay as they are.</p>
+  <p class="note warn"><b>Avatars that blink by themselves</b>If the avatar's own animation blinks, a box asks you to choose <span class="ui">Easy Ikiiki only</span>, <span class="ui">The avatar's only</span> or <span class="ui">Both</span>. You can change it any time under Natural blink.</p>
+</section>
+
+<section id="en-face">
+  <h2>Face</h2>
+  <p>The <b>brows</b> lift or turn troubled now and then, and the <b>mouth</b> corners rise a little. The shapes are found for you, and each has a <span class="ui">Shapes to move (max %)</span> slider. The mouth waits while you talk.</p>
+  <p class="note tip"><b>Rests during expressions</b>While your avatar shows an expression (gestures, FaceEmo and so on), gaze, blinks, brows and mouth pause, and resume when it ends. Eyelids never close twice over a closed-eye expression.</p>
+</section>
+
+<section id="en-bones">
+  <h2>Ears, tail, wings</h2>
+  <p>Ears twitch, flick and perk up; the tail sways, swishes and wags lazily; wings flap, flutter and spread, all mixed at random. Left and right ears move on their own timing.</p>
+  <ul>
+    <li>Bones are found by name (ear, 耳, tail, しっぽ, wing, 羽 and so on), including ears and tails added later with outfits or hair, where Modular Avatar will put them.</li>
+    <li>If they're missing or wrong, use <span class="ui">Detect bones</span> (search again and keep the result) or <span class="ui">Pick by eye</span>.</li>
+    <li><span class="ui">Turn off the avatar's own ear, tail and wing motion</span> (on by default): if the avatar's own animations move its ears or tail, that motion is taken off so the two don't stack.</li>
+    <li>With PhysBones on them, the build turns on "Is Animated", so the physics adds natural follow-through.</li>
+  </ul>
+</section>
+
+<section id="en-pickers">
+  <h2>Pick by eye</h2>
+  <h3>Pick bones by eye</h3>
+  <p>Bones show as dots on a wireframe of your avatar: suggested ones in the part's colour, picked ones in white. Click to pick or drop a bone, or search by name in the list. <span class="ui">Apply</span> keeps the choice.</p>
+  <figure><div class="shot"><img src="img/bonepicker_en.png" alt="The bone picker window" width="1000" height="640" loading="lazy"></div></figure>
+  <h3>Pick shapes by eye</h3>
+  <p>Choose a slot at the top (gaze drift, eye sparkle, natural blink, face) and pick from face thumbnails. Hover one and it moves on the large preview. <span class="ui">Show all shapes</span> lists shapes beyond the suggestions. <span class="ui">Apply</span> saves every slot at once; slots you left alone stay automatic.</p>
+  <figure><div class="shot"><img src="img/shapepicker_en.png" alt="The shape picker window" width="1100" height="720" loading="lazy"></div></figure>
+</section>
+
+<section id="en-menu">
+  <h2>Menu</h2>
+  <p>The Expression menu gets an <b>いきいき</b> submenu (rename it with <span class="ui">Menu name</span>) with an overall ON/OFF and one toggle per part (breathing, ears, tail, wings, eyes, face). Choices are saved and synced.</p>
+  <div class="icons">
+    <figure><img src="img/icon_onoff.png" alt=""><figcaption>ON/OFF</figcaption></figure>
+    <figure><img src="img/icon_breath.png" alt=""><figcaption>Breath</figcaption></figure>
+    <figure><img src="img/icon_ears.png" alt=""><figcaption>Ears</figcaption></figure>
+    <figure><img src="img/icon_tail.png" alt=""><figcaption>Tail</figcaption></figure>
+    <figure><img src="img/icon_wings.png" alt=""><figcaption>Wings</figcaption></figure>
+    <figure><img src="img/icon_eyes.png" alt=""><figcaption>Eyes</figcaption></figure>
+    <figure><img src="img/icon_face.png" alt=""><figcaption>Face</figcaption></figure>
+  </div>
+  <ul>
+    <li><span class="ui">Menu icon</span>: left empty, the bundled icon is used.</li>
+    <li><span class="ui">On by default</span>: whether it starts on after upload.</li>
+    <li><span class="ui">Per-feature toggles</span>: off leaves only the overall ON/OFF, using 1 synced bit.</li>
+    <li><span class="ui">Synced parameters</span>: shows the bits used (up to 7).</li>
+  </ul>
+</section>
+
+<section id="en-how">
+  <h2>How it works</h2>
+  <ul>
+    <li><b>All random</b>: the wait before each move, its size, the gaze direction and the kind of blink are decided on the spot every time, and differently on each viewer's screen.</li>
+    <li><b>Non-destructive</b>: at upload, NDMF builds the FX layers and removes the settings component. Your avatar's own files are never changed; delete the prefab and everything is back.</li>
+    <li><b>Gets along with face gimmicks</b>: the face layers go last in FX, so FaceEmo and similar don't cover them.</li>
+    <li>Works on avatars with Write Defaults ON or OFF.</li>
+  </ul>
+</section>
+
+<section id="en-faq">
+  <h2>FAQ</h2>
+  <details><summary>The ears, tail or wings aren't found</summary><p>Open <span class="ui">Pick by eye</span> in that part's settings, click the root bone and press <span class="ui">Apply</span>. If it still doesn't move, send us details with the diagnostics tool below.</p></details>
+  <details><summary>The gaze goes the wrong way or makes another face</summary><p>Pick the right up, down, left and right shapes again with <span class="ui">Pick shapes by eye</span> under Eyes. Left and right are the avatar's.</p></details>
+  <details><summary>It blinks twice</summary><p>The avatar's own blink overlaps. Choose <span class="ui">Easy Ikiiki only</span> or <span class="ui">The avatar's only</span> under Natural blink.</p></details>
+  <details><summary>I use face tracking</summary><p>Turn "Eyes" and "Face" off in the in-game menu while tracking, or leave those parts out if you always track. If VRChat's own eye tracking moves your eyelids, untick <span class="ui">Enable</span> on Natural blink.</p></details>
+  <details><summary>It looks fine in Unity but moves differently in game</summary><p>VRChat's default idle plays only in game. Turn on <span class="ui">Turn off the default idle sway</span>.</p></details>
+  <details><summary>How do I remove it?</summary><p>Delete Easy_Ikiiki_Asset from your avatar. Your avatar's own files were never changed.</p></details>
+</section>
+
+<section id="en-info">
+  <h2>Notes and contact</h2>
+  <ul><li>One per avatar.</li><li>The author is not responsible for any trouble caused by using this product.</li><li>Terms of use: <a href="../terms/">Easy Ikiiki terms of use</a></li></ul>
+  <p class="note tip"><b>If something doesn't work</b>Send details with the free <a href="https://eukkbi.booth.pm/items/9093824">Eukkbi_Soft Avatar Diagnostics</a> tool, or the text from <span class="ui">Copy diagnostics</span> in the Menu part, and we'll fit it to your avatar.</p>
+  <h3>Update history</h3><ul><li>v1.0.0 (2026/11/15) Released</li></ul>
+  <h3>Contact</h3>
+  <div class="contact"><span>BOOTH message / Discord</span><span class="id">eukkbi_soft</span><button type="button" class="copy" data-copy="eukkbi_soft" data-done="Copied">Copy</button></div>
+</section>
+
+    </article>
+  </main>
+</div>
+
+<footer class="foot">© Easy Ikiiki · Eukkbi_Soft</footer>
+
+<script>
+  (function () {
+    var LANGS = ["ja", "ko", "en"];
+    var KEY = "sn-manual-lang";
+
+    function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+    function store(lang) { try { localStorage.setItem(KEY, lang); } catch (e) { /* private window */ } }
+
+    // #ko / #ja / #en (or a section such as #ko-install) picks the language, then a saved choice, then the browser's.
+    function initial() {
+      var hash = location.hash.replace("#", "");
+      var fromHash = hash.split("-")[0];
+      if (LANGS.indexOf(fromHash) >= 0) return fromHash;
+      var saved = stored();
+      if (LANGS.indexOf(saved) >= 0) return saved;
+      var nav = (navigator.language || "").toLowerCase().slice(0, 2);
+      return LANGS.indexOf(nav) >= 0 ? nav : "en";
+    }
+
+    function apply(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-lang]").forEach(function (el) {
+        el.hidden = el.getAttribute("data-lang") !== lang;
+      });
+      document.querySelectorAll("[data-set-lang]").forEach(function (button) {
+        button.setAttribute("aria-pressed", String(button.getAttribute("data-set-lang") === lang));
+      });
+    }
+
+    document.querySelectorAll("[data-set-lang]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        var lang = button.getAttribute("data-set-lang");
+        apply(lang);
+        store(lang);
+        window.scrollTo({ top: 0 });
+      });
+    });
+
+    document.querySelectorAll(".copy").forEach(function (button) {
+      var label = button.textContent;
+      button.addEventListener("click", function () {
+        var text = button.getAttribute("data-copy");
+        var done = function () {
+          button.textContent = button.getAttribute("data-done");
+          setTimeout(function () { button.textContent = label; }, 1600);
+        };
+        var select = function () {
+          var id = button.parentNode.querySelector(".id");
+          var range = document.createRange();
+          range.selectNodeContents(id);
+          var selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, select);
+        } else {
+          select();
+        }
+      });
+    });
+
+    apply(initial());
+    var target = location.hash && document.getElementById(location.hash.slice(1));
+    if (target && target.scrollIntoView) target.scrollIntoView();
+  })();
+</script>
+</body>
+</html>
