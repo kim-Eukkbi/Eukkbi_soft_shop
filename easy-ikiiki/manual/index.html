@@ -332,7 +332,7 @@
   <p>胸の前・上・横がふわっとふくらみ、背中側は動きません。Modular Avatar で着せた衣装も胸に合わせて動きます。Humanoid ボーンは回さないので、ゲーム内の IK でも腕や足がずれません。</p>
   <ul>
     <li><span class="ui">強さ (%)</span>：呼吸の深さ（最大 200%。150% を超えると服が破れたように見えることがあるので、警告が出ます）。右のグラフで 1 回の呼吸の形（吸う・吐く）を変えられ、<span class="ui">↺</span> で元に戻ります。</li>
-    <li><span class="ui">ふくらむ向き</span>：「前へ」〜「上へ」。胸の大きいアバターは「上へ」にすると、前に押し出す代わりに胸の上のほうが持ち上がり、胸そのものはほとんど動きません。胸のボーンも止めたいときは、下の <span class="ui">動くボーンを見ながら選ぶ</span> で外してください。</li>
+    <li><span class="ui">ふくらむ向き</span>：「前へ」〜「上へ」。胸の大きいアバターは「上へ」にすると、胸の上の前側だけが持ち上がり、胸（Breast）やその下、背中はほとんど動きません（ビルド時に胸のウェイトを場所で分けます。元のメッシュは変更しません）。動くところは下の <span class="ui">動くボーンを見ながら選ぶ</span> で色で確認できます。</li>
     <li><span class="ui">1回の呼吸の長さ (秒)</span> と <span class="ui">速さのゆらぎ (%)</span>：呼吸の速さと、そのばらつき。</li>
     <li><span class="ui">標準の待機モーションを止める</span>（標準でオン）：Additive レイヤーを設定していないアバターは、ゲーム内で VRChat 標準の待機モーションで腕や胸が揺れます（Gesture Manager では見えません）。オンにすると、この揺れを止めて呼吸だけを残します。</li>
   </ul>
@@ -416,7 +416,7 @@
   <details><summary>耳・しっぽ・翼が見つからない</summary><p>パーツの設定で <span class="ui">ボーンを見ながら選ぶ</span> を開き、根元のボーンをクリックして <span class="ui">適用</span> してください。それでも動かない場合は、下の診断ツールで情報を送ってください。</p></details>
   <details><summary>視線が逆の方向に動く・違う表情になる</summary><p>「目」の <span class="ui">シェイプを見ながら選ぶ</span> で、上・下・左・右に正しいシェイプを選び直してください。左右はアバターから見た向きです。</p></details>
   <details><summary>まばたきが二重になる</summary><p>アバター独自のまばたきと重なっています。「自然なまばたき」の下の選択で <span class="ui">イージーいきいきだけ</span> か <span class="ui">アバターのものだけ</span> を選んでください。</p></details>
-  <details><summary>胸の大きいアバターで胸が動きすぎる</summary><p>「からだ」の <span class="ui">ふくらむ向き</span> を「上へ」にしてください。胸の上のほうだけが呼吸するようになります。胸のボーンも止めるには <span class="ui">動くボーンを見ながら選ぶ</span> で Breast のボーンのチェックを外します。</p></details>
+  <details><summary>胸の大きいアバターで胸が動きすぎる</summary><p>「からだ」の <span class="ui">ふくらむ向き</span> を「上へ」にしてください。胸の上の前側だけが呼吸し、胸はほとんど動かなくなります。</p></details>
   <details><summary>フェイストラッキングを使っている</summary><p>トラッキング中はゲーム内メニューで「目」と「表情」をオフにしてください。いつも使うなら、そのパーツを外しても大丈夫です。VRChat 標準のアイトラッキングでまぶたを動かしている場合は、「自然なまばたき」の <span class="ui">使う</span> をオフにしてください。</p></details>
   <details><summary>Unity では見えるのにゲームで動きが違う</summary><p>Gesture Manager でも確認できますが、VRChat 標準の待機モーションはゲーム内でしか再生されません。<span class="ui">標準の待機モーションを止める</span> をオンにしてください。</p></details>
   <details><summary>外したい</summary><p>アバターの中の Easy_Ikiiki_Asset を削除するだけです。アバターの元のファイルは変わっていません。</p></details>
@@ -475,7 +475,7 @@
   <p>가슴의 앞·위·옆이 부드럽게 부풀고 등 쪽은 움직이지 않아요. Modular Avatar로 입힌 의상도 가슴에 맞춰 움직여요. Humanoid 본을 돌리지 않아서 게임 속 IK에서도 팔다리가 어긋나지 않아요.</p>
   <ul>
     <li><span class="ui">강도 (%)</span>: 숨의 깊이 (최대 200%. 150%를 넘으면 옷이 찢어져 보일 수 있어서 경고가 나와요). 오른쪽 그래프로 숨 한 번의 모양(들숨·날숨)을 바꿀 수 있고, <span class="ui">↺</span>로 되돌려요.</li>
-    <li><span class="ui">부푸는 방향</span>: "앞으로"~"위로". 가슴이 큰 아바타는 "위로"로 두면 앞으로 미는 대신 윗가슴이 들썩이고, 가슴 자체는 거의 움직이지 않아요. 가슴 본까지 멈추려면 아래 <span class="ui">움직이는 본 보면서 고르기</span>에서 꺼 주세요.</li>
+    <li><span class="ui">부푸는 방향</span>: "앞으로"~"위로". 가슴이 큰 아바타는 "위로"로 두면 윗가슴 앞쪽만 들썩이고, 가슴(Breast)과 그 아래, 등은 거의 움직이지 않아요 (빌드할 때 가슴 웨이트를 위치에 따라 나눠요. 원본 메쉬는 바꾸지 않아요). 움직이는 곳은 아래 <span class="ui">움직이는 본 보면서 고르기</span>에서 색으로 확인할 수 있어요.</li>
     <li><span class="ui">한 번 숨쉬는 시간 (초)</span>와 <span class="ui">속도 흔들림 (%)</span>: 숨 쉬는 속도와 그 흔들림.</li>
     <li><span class="ui">기본 대기 움직임 끄기</span> (기본 켜짐): Additive 레이어를 따로 설정하지 않은 아바타는 게임 안에서 VRChat 기본 대기 애니메이션 때문에 팔과 가슴이 흔들려요 (Gesture Manager에서는 안 보여요). 켜 두면 이 흔들림을 없애고 숨쉬기만 남겨요.</li>
   </ul>
@@ -559,7 +559,7 @@
   <details><summary>귀·꼬리·날개를 못 찾아요</summary><p>부위 설정에서 <span class="ui">본 보면서 고르기</span>를 열고 뿌리 본을 클릭한 뒤 <span class="ui">적용</span>해 주세요. 그래도 안 움직이면 아래 진단 도구로 정보를 보내 주세요.</p></details>
   <details><summary>시선이 반대로 가거나 다른 표정이 돼요</summary><p>"눈"의 <span class="ui">셰이프 보면서 고르기</span>에서 위·아래·왼쪽·오른쪽에 맞는 셰이프를 다시 골라 주세요. 왼쪽·오른쪽은 아바타 기준이에요.</p></details>
   <details><summary>두 번 깜빡여요</summary><p>아바타 자체 깜빡임과 겹친 거예요. "자연 깜빡임" 아래 선택에서 <span class="ui">이지 이키이키만</span>이나 <span class="ui">아바타 것만</span>을 골라 주세요.</p></details>
-  <details><summary>가슴이 큰 아바타에서 가슴이 너무 움직여요</summary><p>"몸"의 <span class="ui">부푸는 방향</span>을 "위로"로 옮겨 주세요. 윗가슴만 숨쉬게 돼요. 가슴 본까지 멈추려면 <span class="ui">움직이는 본 보면서 고르기</span>에서 Breast 본의 체크를 꺼 주세요.</p></details>
+  <details><summary>가슴이 큰 아바타에서 가슴이 너무 움직여요</summary><p>"몸"의 <span class="ui">부푸는 방향</span>을 "위로"로 옮겨 주세요. 윗가슴 앞쪽만 숨쉬고, 가슴은 거의 움직이지 않게 돼요.</p></details>
   <details><summary>페이스 트래킹을 써요</summary><p>트래킹 중에는 게임 안 메뉴에서 "눈"과 "표정"을 꺼 주세요. 늘 쓴다면 그 부위를 빼도 돼요. VRChat 기본 아이 트래킹으로 눈꺼풀을 움직이는 경우에는 "자연 깜빡임"의 <span class="ui">사용</span>을 꺼 주세요.</p></details>
   <details><summary>Unity에서는 괜찮은데 게임에서 움직임이 달라요</summary><p>VRChat 기본 대기 애니메이션은 게임 안에서만 재생돼요. <span class="ui">기본 대기 움직임 끄기</span>를 켜 주세요.</p></details>
   <details><summary>빼고 싶어요</summary><p>아바타 안의 Easy_Ikiiki_Asset을 지우기만 하면 돼요. 아바타 원본 파일은 바뀌지 않았어요.</p></details>
@@ -618,7 +618,7 @@
   <p>The front, top and sides of the chest rise softly while the back stays still, and outfits added with Modular Avatar move along. No humanoid bone is turned, so in-game IK never pulls the arms or legs out of place.</p>
   <ul>
     <li><span class="ui">Strength (%)</span>: how deep each breath is (up to 200%; past 150% the outfit can look torn, and a warning shows). The graph beside it shapes one breath (in and out); <span class="ui">↺</span> resets it.</li>
-    <li><span class="ui">Swell direction</span>: Forward to Up. On a large bust, Up lifts the upper chest instead of pushing forward, and the bust itself hardly moves. To keep the breast bones still too, untick them in <span class="ui">Pick moving bones by eye</span> below.</li>
+    <li><span class="ui">Swell direction</span>: Forward to Up. On a large bust, Up lifts only the upper front of the chest, while the bust, the ribs below it and the back hardly move (the build splits the chest's weights by place; your mesh files are not changed). <span class="ui">Pick moving bones by eye</span> below shows in colour what moves.</li>
     <li><span class="ui">Seconds per breath</span> and <span class="ui">Pace variation (%)</span>: the pace and how much it wanders.</li>
     <li><span class="ui">Turn off the default idle sway</span> (on by default): avatars without their own Additive layer get VRChat's default idle in game, which sways the arms and chest (Gesture Manager doesn't show it). This stops it so only the breathing remains.</li>
   </ul>
@@ -702,7 +702,7 @@
   <details><summary>The ears, tail or wings aren't found</summary><p>Open <span class="ui">Pick by eye</span> in that part's settings, click the root bone and press <span class="ui">Apply</span>. If it still doesn't move, send us details with the diagnostics tool below.</p></details>
   <details><summary>The gaze goes the wrong way or makes another face</summary><p>Pick the right up, down, left and right shapes again with <span class="ui">Pick shapes by eye</span> under Eyes. Left and right are the avatar's.</p></details>
   <details><summary>It blinks twice</summary><p>The avatar's own blink overlaps. Choose <span class="ui">Easy Ikiiki only</span> or <span class="ui">The avatar's only</span> under Natural blink.</p></details>
-  <details><summary>On a large bust, the breasts move too much</summary><p>Slide <span class="ui">Swell direction</span> under Body toward Up: only the upper chest breathes then. To keep the breast bones still too, untick the Breast bones in <span class="ui">Pick moving bones by eye</span>.</p></details>
+  <details><summary>On a large bust, the breasts move too much</summary><p>Slide <span class="ui">Swell direction</span> under Body toward Up: only the upper front of the chest breathes then, and the bust hardly moves.</p></details>
   <details><summary>I use face tracking</summary><p>Turn "Eyes" and "Face" off in the in-game menu while tracking, or leave those parts out if you always track. If VRChat's own eye tracking moves your eyelids, untick <span class="ui">Enable</span> on Natural blink.</p></details>
   <details><summary>It looks fine in Unity but moves differently in game</summary><p>VRChat's default idle plays only in game. Turn on <span class="ui">Turn off the default idle sway</span>.</p></details>
   <details><summary>How do I remove it?</summary><p>Delete Easy_Ikiiki_Asset from your avatar. Your avatar's own files were never changed.</p></details>
