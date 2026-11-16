@@ -329,7 +329,7 @@
 
 <section id="ja-body">
   <h2>からだ（呼吸）</h2>
-  <p>胸の前・上・横がふわっとふくらみ、背中側は動きません。Modular Avatar で着せた衣装も胸に合わせて動きます。Humanoid ボーンは回さないので、ゲーム内の IK でも腕や足がずれません。</p>
+  <p>胸の前・上・横がふわっとふくらみ、背中側は動きません。Modular Avatar で着せた衣装も胸に合わせて動きます。Humanoid ボーンは動かさないので、FBT（フルボディトラッキング）やゲーム内の IK でも腕や足がずれず、どの姿勢でも呼吸します。</p>
   <ul>
     <li><span class="ui">強さ (%)</span>：呼吸の深さ（最大 200%。150% を超えると服が破れたように見えることがあるので、警告が出ます）。右のグラフで 1 回の呼吸の形（吸う・吐く）を変えられ、<span class="ui">↺</span> で元に戻ります。</li>
     <li><span class="ui">呼吸する範囲</span>：「全体」〜「胸の上だけ」。胸の大きいアバターは「胸の上だけ」にすると、胸の上の前側だけが持ち上がり、胸（Breast）やその下、背中はほとんど動きません（ビルド時に胸のウェイトを場所で分けます。元のメッシュは変更しません）。動くところは下の <span class="ui">動くボーンを見ながら選ぶ</span> で色で確認できます。</li>
@@ -351,6 +351,7 @@
   <p>目のハイライトが、ゆっくり大きくなったり光ったりします。</p>
   <h3>自然なまばたき</h3>
   <p>ビルド時に VRChat 標準のまばたきをオフにして、代わりにランダムなまばたき（ふつう・2 回・ゆっくりなど）をします。目が上下を見るときにまぶたがついてくる VRChat の機能はそのままです。</p>
+  <p><span class="ui">まばたきシェイプの値 (%)</span>：目を閉じるときにシェイプをどこまで上げるか（標準 100%）。目のシェイプを別に調整しているアバターは、100% だと目が閉じすぎたり形が崩れたりすることがあります。プレビューを見ながら、ちょうど目が閉じるくらいまで下げてください。</p>
   <p class="note warn"><b>独自のまばたきがあるアバター</b>アバター自身のアニメーションでまばたきしている場合は、<span class="ui">イージーいきいきだけ</span> / <span class="ui">アバターのものだけ</span> / <span class="ui">両方</span> から選ぶボックスが表示されます。あとから「自然なまばたき」の下でいつでも変えられます。</p>
 </section>
 
@@ -417,6 +418,7 @@
   <details><summary>視線が逆の方向に動く・違う表情になる</summary><p>「目」の <span class="ui">シェイプを見ながら選ぶ</span> で、上・下・左・右に正しいシェイプを選び直してください。左右はアバターから見た向きです。</p></details>
   <details><summary>まばたきが二重になる</summary><p>アバター独自のまばたきと重なっています。「自然なまばたき」の下の選択で <span class="ui">イージーいきいきだけ</span> か <span class="ui">アバターのものだけ</span> を選んでください。</p></details>
   <details><summary>胸の大きいアバターで胸が動きすぎる</summary><p>「からだ」の <span class="ui">呼吸する範囲</span> を「胸の上だけ」にしてください。胸の上の前側だけが呼吸し、胸はほとんど動かなくなります。</p></details>
+  <details><summary>FBT（フルボディトラッキング）でも動きますか</summary><p>はい。呼吸は Humanoid ボーンを動かさず、胸のボーンの下に追加した専用のボーンをふくらませるので、トラッカーで決まった姿勢のまま呼吸します。デスクトップ・VR でも同じように動きます。</p></details>
   <details><summary>フェイストラッキングを使っている</summary><p>トラッキング中はゲーム内メニューで「目」と「表情」をオフにしてください。いつも使うなら、そのパーツを外しても大丈夫です。VRChat 標準のアイトラッキングでまぶたを動かしている場合は、「自然なまばたき」の <span class="ui">使う</span> をオフにしてください。</p></details>
   <details><summary>Unity では見えるのにゲームで動きが違う</summary><p>Gesture Manager でも確認できますが、VRChat 標準の待機モーションはゲーム内でしか再生されません。<span class="ui">標準の待機モーションを止める</span> をオンにしてください。</p></details>
   <details><summary>外したい</summary><p>アバターの中の Easy_Ikiiki_Asset を削除するだけです。アバターの元のファイルは変わっていません。</p></details>
@@ -434,7 +436,7 @@
   </ol>
   <p>送信は、同梱の <a href="https://eukkbi.booth.pm/items/9093824">Eukkbi_Soft アバター診断ツール</a>（<code>Assets/Eukkbi_Soft/Avatar_Diagnostics</code>）が行います。イージーいきいき自体には通信機能がありません。このフォルダを消してしまった場合は、BOOTH から無料で入れ直せます。</p>
   <p>送信したくない場合は <span class="ui">コピーのみ</span> で内容をコピーし、メッセージに貼り付けて送ってください。</p>
-  <h3>更新履歴</h3><ul><li>v1.2.0（2026/11/15）呼吸する範囲（からだ）：「全体」〜「胸の上だけ」を選べるように。胸の大きいアバターは「胸の上だけ」にすると、胸の上のほうだけが呼吸します・呼吸の強さを最大200%まで（150%を超えると警告）</li><li>v1.1.0（2026/11/15）動くボーンを見ながら選ぶ（からだ）：呼吸で動くボーンとメッシュを色で表示し、胸に付いたボーン（翼・飾りなど）ごとに一緒に動かすかを選べるように・インスペクターから診断情報を送信（診断ツールを同梱）</li><li>v1.0.1（2026/11/15）シェイプを見ながら選ぶ：選んだシェイプが先頭に移動しないように修正</li><li>v1.0.0（2026/11/15）公開</li></ul>
+  <h3>更新履歴</h3><ul><li>v1.2.1（2026/11/16）自然なまばたきのシェイプの値（%）を調整できるように（目のシェイプを調整しているアバター向け）・耳／しっぽの検出で EditorOnly のメッシュを除外・FBT 対応を明記</li><li>v1.2.0（2026/11/15）呼吸する範囲（からだ）：「全体」〜「胸の上だけ」を選べるように。胸の大きいアバターは「胸の上だけ」にすると、胸の上のほうだけが呼吸します・呼吸の強さを最大200%まで（150%を超えると警告）</li><li>v1.1.0（2026/11/15）動くボーンを見ながら選ぶ（からだ）：呼吸で動くボーンとメッシュを色で表示し、胸に付いたボーン（翼・飾りなど）ごとに一緒に動かすかを選べるように・インスペクターから診断情報を送信（診断ツールを同梱）</li><li>v1.0.1（2026/11/15）シェイプを見ながら選ぶ：選んだシェイプが先頭に移動しないように修正</li><li>v1.0.0（2026/11/15）公開</li></ul>
   <h3>お問い合わせ</h3>
   <div class="contact"><span>BOOTH のメッセージ / Discord</span><span class="id">eukkbi_soft</span><button type="button" class="copy" data-copy="eukkbi_soft" data-done="コピーしました">コピー</button></div>
 </section>
@@ -472,7 +474,7 @@
 
 <section id="ko-body">
   <h2>몸 (숨쉬기)</h2>
-  <p>가슴의 앞·위·옆이 부드럽게 부풀고 등 쪽은 움직이지 않아요. Modular Avatar로 입힌 의상도 가슴에 맞춰 움직여요. Humanoid 본을 돌리지 않아서 게임 속 IK에서도 팔다리가 어긋나지 않아요.</p>
+  <p>가슴의 앞·위·옆이 부드럽게 부풀고 등 쪽은 움직이지 않아요. Modular Avatar로 입힌 의상도 가슴에 맞춰 움직여요. Humanoid 본을 움직이지 않아서 FBT(풀 바디 트래킹)나 게임 속 IK에서도 팔다리가 어긋나지 않고, 어떤 자세에서도 숨쉬어요.</p>
   <ul>
     <li><span class="ui">강도 (%)</span>: 숨의 깊이 (최대 200%. 150%를 넘으면 옷이 찢어져 보일 수 있어서 경고가 나와요). 오른쪽 그래프로 숨 한 번의 모양(들숨·날숨)을 바꿀 수 있고, <span class="ui">↺</span>로 되돌려요.</li>
     <li><span class="ui">숨쉬는 범위</span>: "전체적으로"~"윗가슴만". 가슴이 큰 아바타는 "윗가슴만"으로 두면 윗가슴 앞쪽만 들썩이고, 가슴(Breast)과 그 아래, 등은 거의 움직이지 않아요 (빌드할 때 가슴 웨이트를 위치에 따라 나눠요. 원본 메쉬는 바꾸지 않아요). 움직이는 곳은 아래 <span class="ui">움직이는 본 보면서 고르기</span>에서 색으로 확인할 수 있어요.</li>
@@ -494,6 +496,7 @@
   <p>눈 하이라이트가 천천히 커지거나 반짝여요.</p>
   <h3>자연 깜빡임</h3>
   <p>빌드할 때 VRChat 기본 깜빡임을 끄고, 대신 랜덤한 깜빡임(보통·두 번·천천히 등)을 해요. 눈이 위아래를 볼 때 눈꺼풀이 따라오는 VRChat 기능은 그대로예요.</p>
+  <p><span class="ui">깜빡임 셰이프 수치 (%)</span>: 눈을 감을 때 셰이프를 몇까지 올릴지예요 (기본 100%). 눈 셰이프를 따로 조정해 둔 아바타는 100%에서 눈이 지나치게 감기거나 모양이 무너질 수 있어요. 미리보기를 보면서 눈이 딱 감기는 정도로 낮춰 주세요.</p>
   <p class="note warn"><b>자체 깜빡임이 있는 아바타</b>아바타가 자체 애니메이션으로 깜빡이면 <span class="ui">이지 이키이키만</span> / <span class="ui">아바타 것만</span> / <span class="ui">둘 다</span> 중에서 고르는 상자가 나와요. 나중에 "자연 깜빡임" 아래에서 언제든 바꿀 수 있어요.</p>
 </section>
 
@@ -560,6 +563,7 @@
   <details><summary>시선이 반대로 가거나 다른 표정이 돼요</summary><p>"눈"의 <span class="ui">셰이프 보면서 고르기</span>에서 위·아래·왼쪽·오른쪽에 맞는 셰이프를 다시 골라 주세요. 왼쪽·오른쪽은 아바타 기준이에요.</p></details>
   <details><summary>두 번 깜빡여요</summary><p>아바타 자체 깜빡임과 겹친 거예요. "자연 깜빡임" 아래 선택에서 <span class="ui">이지 이키이키만</span>이나 <span class="ui">아바타 것만</span>을 골라 주세요.</p></details>
   <details><summary>가슴이 큰 아바타에서 가슴이 너무 움직여요</summary><p>"몸"의 <span class="ui">숨쉬는 범위</span>을 "윗가슴만"으로 옮겨 주세요. 윗가슴 앞쪽만 숨쉬고, 가슴은 거의 움직이지 않게 돼요.</p></details>
+  <details><summary>FBT(풀 바디 트래킹)에서도 작동하나요</summary><p>네. 숨쉬기는 Humanoid 본을 움직이지 않고 가슴 본 아래에 추가한 전용 본을 부풀리기 때문에, 트래커로 정해진 자세 그대로 숨쉬어요. 데스크톱·VR에서도 똑같이 작동해요.</p></details>
   <details><summary>페이스 트래킹을 써요</summary><p>트래킹 중에는 게임 안 메뉴에서 "눈"과 "표정"을 꺼 주세요. 늘 쓴다면 그 부위를 빼도 돼요. VRChat 기본 아이 트래킹으로 눈꺼풀을 움직이는 경우에는 "자연 깜빡임"의 <span class="ui">사용</span>을 꺼 주세요.</p></details>
   <details><summary>Unity에서는 괜찮은데 게임에서 움직임이 달라요</summary><p>VRChat 기본 대기 애니메이션은 게임 안에서만 재생돼요. <span class="ui">기본 대기 움직임 끄기</span>를 켜 주세요.</p></details>
   <details><summary>빼고 싶어요</summary><p>아바타 안의 Easy_Ikiiki_Asset을 지우기만 하면 돼요. 아바타 원본 파일은 바뀌지 않았어요.</p></details>
@@ -577,7 +581,7 @@
   </ol>
   <p>보내기는 함께 들어 있는 <a href="https://eukkbi.booth.pm/items/9093824">Eukkbi_Soft 아바타 진단 도구</a>(<code>Assets/Eukkbi_Soft/Avatar_Diagnostics</code>)가 맡아요. 이지 이키이키 자체에는 통신 기능이 없어요. 이 폴더를 지웠다면 BOOTH에서 무료로 다시 받을 수 있어요.</p>
   <p>보내기 싫으면 <span class="ui">복사만 하기</span>로 내용을 복사해서 메시지에 붙여 넣어 주세요.</p>
-  <h3>업데이트 이력</h3><ul><li>v1.2.0 (2026/11/15) 숨쉬는 범위 (몸): "전체적으로"~"윗가슴만"을 고를 수 있게. 가슴이 큰 아바타는 "윗가슴만"으로 두면 윗가슴만 숨쉬어요 · 숨쉬기 강도 최대 200% (150% 넘으면 경고)</li><li>v1.1.0 (2026/11/15) 움직이는 본 보면서 고르기 (몸): 숨쉴 때 움직이는 본과 메쉬를 색으로 보여 주고, 가슴에 붙은 본(날개·장식 등)마다 같이 움직일지 고를 수 있게 · 인스펙터에서 진단 정보 보내기 (진단 도구 포함)</li><li>v1.0.1 (2026/11/15) 셰이프 보면서 고르기: 고른 셰이프가 맨 앞으로 이동하지 않도록 수정</li><li>v1.0.0 (2026/11/15) 공개</li></ul>
+  <h3>업데이트 이력</h3><ul><li>v1.2.1 (2026/11/16) 자연 깜빡임 셰이프 수치(%)를 조절할 수 있게 (눈 셰이프를 조정해 둔 아바타용) · 귀/꼬리 인식에서 EditorOnly 메쉬 제외 · FBT 지원 명시</li><li>v1.2.0 (2026/11/15) 숨쉬는 범위 (몸): "전체적으로"~"윗가슴만"을 고를 수 있게. 가슴이 큰 아바타는 "윗가슴만"으로 두면 윗가슴만 숨쉬어요 · 숨쉬기 강도 최대 200% (150% 넘으면 경고)</li><li>v1.1.0 (2026/11/15) 움직이는 본 보면서 고르기 (몸): 숨쉴 때 움직이는 본과 메쉬를 색으로 보여 주고, 가슴에 붙은 본(날개·장식 등)마다 같이 움직일지 고를 수 있게 · 인스펙터에서 진단 정보 보내기 (진단 도구 포함)</li><li>v1.0.1 (2026/11/15) 셰이프 보면서 고르기: 고른 셰이프가 맨 앞으로 이동하지 않도록 수정</li><li>v1.0.0 (2026/11/15) 공개</li></ul>
   <h3>문의</h3>
   <div class="contact"><span>BOOTH 메시지 / Discord</span><span class="id">eukkbi_soft</span><button type="button" class="copy" data-copy="eukkbi_soft" data-done="복사했어요">복사</button></div>
 </section>
@@ -615,7 +619,7 @@
 
 <section id="en-body">
   <h2>Body (breathing)</h2>
-  <p>The front, top and sides of the chest rise softly while the back stays still, and outfits added with Modular Avatar move along. No humanoid bone is turned, so in-game IK never pulls the arms or legs out of place.</p>
+  <p>The front, top and sides of the chest rise softly while the back stays still, and outfits added with Modular Avatar move along. No humanoid bone is moved, so in FBT (full-body tracking) and in-game IK your arms and legs stay put, and it breathes in any pose.</p>
   <ul>
     <li><span class="ui">Strength (%)</span>: how deep each breath is (up to 200%; past 150% the outfit can look torn, and a warning shows). The graph beside it shapes one breath (in and out); <span class="ui">↺</span> resets it.</li>
     <li><span class="ui">Breathing area</span>: Whole chest to Upper chest only. On a large bust, "Upper chest only" lifts just the upper front of the chest, while the bust, the ribs below it and the back hardly move (the build splits the chest's weights by place; your mesh files are not changed). <span class="ui">Pick moving bones by eye</span> below shows in colour what moves.</li>
@@ -637,6 +641,7 @@
   <p>The eye highlights slowly grow and shimmer.</p>
   <h3>Natural blink</h3>
   <p>The build turns off VRChat's own blink and blinks at random in its place (single, double, slow and so on). VRChat's eyelids following the eyes up and down stay as they are.</p>
+  <p><span class="ui">Blink shape amount (%)</span>: how far the shape goes when the eyes close (100% by default). On an avatar whose eye shapes were adjusted, 100% can over-close the eyes or bend their shape: watch the preview and lower it until the eyes just close.</p>
   <p class="note warn"><b>Avatars that blink by themselves</b>If the avatar's own animation blinks, a box asks you to choose <span class="ui">Easy Ikiiki only</span>, <span class="ui">The avatar's only</span> or <span class="ui">Both</span>. You can change it any time under Natural blink.</p>
 </section>
 
@@ -703,6 +708,7 @@
   <details><summary>The gaze goes the wrong way or makes another face</summary><p>Pick the right up, down, left and right shapes again with <span class="ui">Pick shapes by eye</span> under Eyes. Left and right are the avatar's.</p></details>
   <details><summary>It blinks twice</summary><p>The avatar's own blink overlaps. Choose <span class="ui">Easy Ikiiki only</span> or <span class="ui">The avatar's only</span> under Natural blink.</p></details>
   <details><summary>On a large bust, the breasts move too much</summary><p>Slide <span class="ui">Breathing area</span> under Body to "Upper chest only": just the upper front of the chest breathes then, and the bust hardly moves.</p></details>
+  <details><summary>Does it work with FBT (full-body tracking)?</summary><p>Yes. Breathing moves no humanoid bone: it swells a bone of its own added under the chest, so it breathes in whatever pose your trackers set. Desktop and VR work the same way.</p></details>
   <details><summary>I use face tracking</summary><p>Turn "Eyes" and "Face" off in the in-game menu while tracking, or leave those parts out if you always track. If VRChat's own eye tracking moves your eyelids, untick <span class="ui">Enable</span> on Natural blink.</p></details>
   <details><summary>It looks fine in Unity but moves differently in game</summary><p>VRChat's default idle plays only in game. Turn on <span class="ui">Turn off the default idle sway</span>.</p></details>
   <details><summary>How do I remove it?</summary><p>Delete Easy_Ikiiki_Asset from your avatar. Your avatar's own files were never changed.</p></details>
@@ -720,7 +726,7 @@
   </ol>
   <p>The sending is done by the bundled <a href="https://eukkbi.booth.pm/items/9093824">Eukkbi_Soft Avatar Diagnostics</a> tool (<code>Assets/Eukkbi_Soft/Avatar_Diagnostics</code>); Easy Ikiiki itself has no network code. Deleted that folder? Get it again for free on BOOTH.</p>
   <p>Rather not send it? Use <span class="ui">Copy only</span> and paste the text in your message.</p>
-  <h3>Update history</h3><ul><li>v1.2.0 (2026/11/15) Breathing area (Body): choose Whole chest to Upper chest only; on a large bust, "Upper chest only" lets just the upper chest breathe; breathing strength up to 200% (warning past 150%)</li><li>v1.1.0 (2026/11/15) Pick moving bones by eye (Body): see the bones and meshes breathing moves, and choose which bones on the chest (wings, accessories) ride along; send diagnostics from the inspector (diagnostics tool bundled)</li><li>v1.0.1 (2026/11/15) Pick shapes by eye: a picked shape no longer jumps to the top</li><li>v1.0.0 (2026/11/15) Released</li></ul>
+  <h3>Update history</h3><ul><li>v1.2.1 (2026/11/16) Blink shape amount (%) for natural blinks (for avatars with adjusted eye shapes); ear and tail detection skips EditorOnly meshes; FBT support noted</li><li>v1.2.0 (2026/11/15) Breathing area (Body): choose Whole chest to Upper chest only; on a large bust, "Upper chest only" lets just the upper chest breathe; breathing strength up to 200% (warning past 150%)</li><li>v1.1.0 (2026/11/15) Pick moving bones by eye (Body): see the bones and meshes breathing moves, and choose which bones on the chest (wings, accessories) ride along; send diagnostics from the inspector (diagnostics tool bundled)</li><li>v1.0.1 (2026/11/15) Pick shapes by eye: a picked shape no longer jumps to the top</li><li>v1.0.0 (2026/11/15) Released</li></ul>
   <h3>Contact</h3>
   <div class="contact"><span>BOOTH message / Discord</span><span class="id">eukkbi_soft</span><button type="button" class="copy" data-copy="eukkbi_soft" data-done="Copied">Copy</button></div>
 </section>
