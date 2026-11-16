@@ -255,6 +255,7 @@
         <li><a href="#ja-body">からだ（呼吸）</a></li>
         <li><a href="#ja-eyes">目</a></li>
         <li><a href="#ja-face">表情</a></li>
+        <li><a href="#ja-heart">心拍連動</a></li>
         <li><a href="#ja-bones">耳・しっぽ・翼</a></li>
         <li><a href="#ja-pickers">見ながら選ぶ</a></li>
         <li><a href="#ja-menu">メニュー</a></li>
@@ -271,6 +272,7 @@
         <li><a href="#ko-body">몸 (숨쉬기)</a></li>
         <li><a href="#ko-eyes">눈</a></li>
         <li><a href="#ko-face">표정</a></li>
+        <li><a href="#ko-heart">심박 연동</a></li>
         <li><a href="#ko-bones">귀·꼬리·날개</a></li>
         <li><a href="#ko-pickers">보면서 고르기</a></li>
         <li><a href="#ko-menu">메뉴</a></li>
@@ -287,6 +289,7 @@
         <li><a href="#en-body">Body (breathing)</a></li>
         <li><a href="#en-eyes">Eyes</a></li>
         <li><a href="#en-face">Face</a></li>
+        <li><a href="#en-heart">Heart rate</a></li>
         <li><a href="#en-bones">Ears, tail, wings</a></li>
         <li><a href="#en-pickers">Pick by eye</a></li>
         <li><a href="#en-menu">Menu</a></li>
@@ -361,6 +364,18 @@
   <p class="note tip"><b>表情中はお休み</b>ジェスチャーや FaceEmo などでアバターの表情が出ている間は、視線・まばたき・眉・口の動きが自動で止まり、表情が戻ると再開します。目を閉じた表情でまぶたが二重に閉じることもありません。</p>
 </section>
 
+<section id="ja-heart">
+  <h2>心拍連動（v1.3.0）</h2>
+  <p>Pulsoid や HypeRate などの心拍アプリと連動して、心拍が上がると<b>呼吸が速く・少し深く</b>なり、<b>ほっぺが赤く</b>なります。アプリのアバター用プレハブが入れる心拍パラメーターを読むだけなので、同期ビットは増えません。心拍パラメーターのないアバターでは何も作られません。</p>
+  <ol class="steps">
+    <li>心拍アプリのアバター用プレハブを入れます（アバターに <code>HR</code> などの心拍パラメーターができます）。</li>
+    <li>「からだ」タブの <span class="ui">心拍で呼吸</span> で <span class="ui">心拍パラメーター</span> を選びます。Pulsoid アプリ・HypeRate・HRtoVRChat はふつう <code>HR</code>、PulsoidToOSC は <code>HeartRateInt</code> です。ほかのアプリは名前を入力します。「アバターに〜パラメーターがあります」と出れば OK です。</li>
+    <li><span class="ui">ふだん ~ 速い心拍</span>（標準 70〜130 bpm）と、速い心拍での呼吸の速さ・深さを決めます。</li>
+    <li>「表情」タブの <span class="ui">心拍で赤面</span> で、赤面シェイプ（自動で探します）と赤みの強さ、赤くなり始める心拍を決めます。</li>
+  </ol>
+  <p><span class="ui">プレビューの心拍</span> を動かすと、その心拍での呼吸と赤面をプレビューで確認できます。赤面はアバターの表情の上に足すので、表情の赤面もそのまま残ります。</p>
+</section>
+
 <section id="ja-bones">
   <h2>耳・しっぽ・翼</h2>
   <p>耳はぴくっ・ふるふる・ぴんと立つ、しっぽはゆらゆら・ぶんっ・のんびり、翼ははばたき・パタパタ・広げる動きを、ランダムに組み合わせます。左右の耳は別々のタイミングで動きます。</p>
@@ -418,6 +433,7 @@
   <details><summary>視線が逆の方向に動く・違う表情になる</summary><p>「目」の <span class="ui">シェイプを見ながら選ぶ</span> で、上・下・左・右に正しいシェイプを選び直してください。左右はアバターから見た向きです。</p></details>
   <details><summary>まばたきが二重になる</summary><p>アバター独自のまばたきと重なっています。「自然なまばたき」の下の選択で <span class="ui">イージーいきいきだけ</span> か <span class="ui">アバターのものだけ</span> を選んでください。</p></details>
   <details><summary>胸の大きいアバターで胸が動きすぎる</summary><p>「からだ」の <span class="ui">呼吸する範囲</span> を「胸の上だけ」にしてください。胸の上の前側だけが呼吸し、胸はほとんど動かなくなります。</p></details>
+  <details><summary>心拍連動が動かない</summary><p>「心拍で呼吸」に「アバターに〜パラメーターがあります」と出ているか確認してください。出ていない場合は、心拍アプリのプレハブを入れるか、アプリが使うパラメーター名を選び直してください。心拍アプリ側で OSC 送信がオンになっているかも確認してください。</p></details>
   <details><summary>FBT（フルボディトラッキング）でも動きますか</summary><p>はい。呼吸は Humanoid ボーンを動かさず、胸のボーンの下に追加した専用のボーンをふくらませるので、トラッカーで決まった姿勢のまま呼吸します。デスクトップ・VR でも同じように動きます。</p></details>
   <details><summary>フェイストラッキングを使っている</summary><p>トラッキング中はゲーム内メニューで「目」と「表情」をオフにしてください。いつも使うなら、そのパーツを外しても大丈夫です。VRChat 標準のアイトラッキングでまぶたを動かしている場合は、「自然なまばたき」の <span class="ui">使う</span> をオフにしてください。</p></details>
   <details><summary>Unity では見えるのにゲームで動きが違う</summary><p>Gesture Manager でも確認できますが、VRChat 標準の待機モーションはゲーム内でしか再生されません。<span class="ui">標準の待機モーションを止める</span> をオンにしてください。</p></details>
@@ -436,7 +452,7 @@
   </ol>
   <p>送信は、同梱の <a href="https://eukkbi.booth.pm/items/9093824">Eukkbi_Soft アバター診断ツール</a>（<code>Assets/Eukkbi_Soft/Avatar_Diagnostics</code>）が行います。イージーいきいき自体には通信機能がありません。このフォルダを消してしまった場合は、BOOTH から無料で入れ直せます。</p>
   <p>送信したくない場合は <span class="ui">コピーのみ</span> で内容をコピーし、メッセージに貼り付けて送ってください。</p>
-  <h3>更新履歴</h3><ul><li>v1.2.1（2026/11/16）自然なまばたきのシェイプの値（%）を調整できるように（目のシェイプを調整しているアバター向け）・耳／しっぽの検出で EditorOnly のメッシュを除外・FBT 対応を明記</li><li>v1.2.0（2026/11/15）呼吸する範囲（からだ）：「全体」〜「胸の上だけ」を選べるように。胸の大きいアバターは「胸の上だけ」にすると、胸の上のほうだけが呼吸します・呼吸の強さを最大200%まで（150%を超えると警告）</li><li>v1.1.0（2026/11/15）動くボーンを見ながら選ぶ（からだ）：呼吸で動くボーンとメッシュを色で表示し、胸に付いたボーン（翼・飾りなど）ごとに一緒に動かすかを選べるように・インスペクターから診断情報を送信（診断ツールを同梱）</li><li>v1.0.1（2026/11/15）シェイプを見ながら選ぶ：選んだシェイプが先頭に移動しないように修正</li><li>v1.0.0（2026/11/15）公開</li></ul>
+  <h3>更新履歴</h3><ul><li>v1.3.0（2026/11/16）心拍連動：Pulsoid・HypeRate などの心拍アプリと連動して、心拍が上がると呼吸が速く深くなり、ほっぺが赤くなるように（同期ビットは増えません）</li><li>v1.2.1（2026/11/16）自然なまばたきのシェイプの値（%）を調整できるように（目のシェイプを調整しているアバター向け）・耳／しっぽの検出で EditorOnly のメッシュを除外・FBT 対応を明記</li><li>v1.2.0（2026/11/15）呼吸する範囲（からだ）：「全体」〜「胸の上だけ」を選べるように。胸の大きいアバターは「胸の上だけ」にすると、胸の上のほうだけが呼吸します・呼吸の強さを最大200%まで（150%を超えると警告）</li><li>v1.1.0（2026/11/15）動くボーンを見ながら選ぶ（からだ）：呼吸で動くボーンとメッシュを色で表示し、胸に付いたボーン（翼・飾りなど）ごとに一緒に動かすかを選べるように・インスペクターから診断情報を送信（診断ツールを同梱）</li><li>v1.0.1（2026/11/15）シェイプを見ながら選ぶ：選んだシェイプが先頭に移動しないように修正</li><li>v1.0.0（2026/11/15）公開</li></ul>
   <h3>お問い合わせ</h3>
   <div class="contact"><span>BOOTH のメッセージ / Discord</span><span class="id">eukkbi_soft</span><button type="button" class="copy" data-copy="eukkbi_soft" data-done="コピーしました">コピー</button></div>
 </section>
@@ -506,6 +522,18 @@
   <p class="note tip"><b>표정 중에는 쉬어요</b>제스처나 FaceEmo 등으로 아바타 표정이 나오는 동안에는 시선·깜빡임·눈썹·입 움직임이 자동으로 멈추고, 표정이 돌아오면 다시 움직여요. 눈 감은 표정에서 눈꺼풀이 두 번 감기는 일도 없어요.</p>
 </section>
 
+<section id="ko-heart">
+  <h2>심박 연동 (v1.3.0)</h2>
+  <p>Pulsoid, HypeRate 같은 심박 앱과 연동해서, 심박이 오르면 <b>호흡이 빠르고 조금 깊어지고</b>, <b>볼이 붉어져요</b>. 앱의 아바타용 프리팹이 넣는 심박 파라미터를 읽기만 해서 동기화 비트가 늘지 않아요. 심박 파라미터가 없는 아바타에서는 아무것도 만들어지지 않아요.</p>
+  <ol class="steps">
+    <li>심박 앱의 아바타용 프리팹을 넣어요 (아바타에 <code>HR</code> 같은 심박 파라미터가 생겨요).</li>
+    <li>"몸" 탭의 <span class="ui">심박 호흡</span>에서 <span class="ui">심박 파라미터</span>를 골라요. Pulsoid 앱·HypeRate·HRtoVRChat은 보통 <code>HR</code>, PulsoidToOSC는 <code>HeartRateInt</code>예요. 다른 앱은 이름을 입력해요. "아바타에서 ~ 파라미터를 찾았어요"가 나오면 OK예요.</li>
+    <li><span class="ui">평소 ~ 빠른 심박</span>(기본 70~130 bpm)과, 빠른 심박일 때 숨 속도·깊이를 정해요.</li>
+    <li>"표정" 탭의 <span class="ui">심박 홍조</span>에서 홍조 셰이프(자동으로 찾아요)와 홍조 세기, 붉어지기 시작하는 심박을 정해요.</li>
+  </ol>
+  <p><span class="ui">미리보기 심박</span>을 움직이면 그 심박에서의 호흡과 홍조를 미리보기로 볼 수 있어요. 홍조는 아바타 표정 위에 더해져서 표정의 홍조도 그대로 남아요.</p>
+</section>
+
 <section id="ko-bones">
   <h2>귀·꼬리·날개</h2>
   <p>귀는 쫑긋·털기·세우기, 꼬리는 살랑·휙·느긋하게, 날개는 퍼덕·파닥파닥·펼치기를 랜덤으로 섞어요. 왼쪽과 오른쪽 귀는 각자 다른 타이밍에 움직여요.</p>
@@ -563,6 +591,7 @@
   <details><summary>시선이 반대로 가거나 다른 표정이 돼요</summary><p>"눈"의 <span class="ui">셰이프 보면서 고르기</span>에서 위·아래·왼쪽·오른쪽에 맞는 셰이프를 다시 골라 주세요. 왼쪽·오른쪽은 아바타 기준이에요.</p></details>
   <details><summary>두 번 깜빡여요</summary><p>아바타 자체 깜빡임과 겹친 거예요. "자연 깜빡임" 아래 선택에서 <span class="ui">이지 이키이키만</span>이나 <span class="ui">아바타 것만</span>을 골라 주세요.</p></details>
   <details><summary>가슴이 큰 아바타에서 가슴이 너무 움직여요</summary><p>"몸"의 <span class="ui">숨쉬는 범위</span>을 "윗가슴만"으로 옮겨 주세요. 윗가슴 앞쪽만 숨쉬고, 가슴은 거의 움직이지 않게 돼요.</p></details>
+  <details><summary>심박 연동이 안 돼요</summary><p>"심박 호흡"에 "아바타에서 ~ 파라미터를 찾았어요"가 나오는지 확인해 주세요. 안 나오면 심박 앱의 프리팹을 넣거나, 앱이 쓰는 파라미터 이름을 다시 골라 주세요. 심박 앱에서 OSC 보내기가 켜져 있는지도 확인해 주세요.</p></details>
   <details><summary>FBT(풀 바디 트래킹)에서도 작동하나요</summary><p>네. 숨쉬기는 Humanoid 본을 움직이지 않고 가슴 본 아래에 추가한 전용 본을 부풀리기 때문에, 트래커로 정해진 자세 그대로 숨쉬어요. 데스크톱·VR에서도 똑같이 작동해요.</p></details>
   <details><summary>페이스 트래킹을 써요</summary><p>트래킹 중에는 게임 안 메뉴에서 "눈"과 "표정"을 꺼 주세요. 늘 쓴다면 그 부위를 빼도 돼요. VRChat 기본 아이 트래킹으로 눈꺼풀을 움직이는 경우에는 "자연 깜빡임"의 <span class="ui">사용</span>을 꺼 주세요.</p></details>
   <details><summary>Unity에서는 괜찮은데 게임에서 움직임이 달라요</summary><p>VRChat 기본 대기 애니메이션은 게임 안에서만 재생돼요. <span class="ui">기본 대기 움직임 끄기</span>를 켜 주세요.</p></details>
@@ -581,7 +610,7 @@
   </ol>
   <p>보내기는 함께 들어 있는 <a href="https://eukkbi.booth.pm/items/9093824">Eukkbi_Soft 아바타 진단 도구</a>(<code>Assets/Eukkbi_Soft/Avatar_Diagnostics</code>)가 맡아요. 이지 이키이키 자체에는 통신 기능이 없어요. 이 폴더를 지웠다면 BOOTH에서 무료로 다시 받을 수 있어요.</p>
   <p>보내기 싫으면 <span class="ui">복사만 하기</span>로 내용을 복사해서 메시지에 붙여 넣어 주세요.</p>
-  <h3>업데이트 이력</h3><ul><li>v1.2.1 (2026/11/16) 자연 깜빡임 셰이프 수치(%)를 조절할 수 있게 (눈 셰이프를 조정해 둔 아바타용) · 귀/꼬리 인식에서 EditorOnly 메쉬 제외 · FBT 지원 명시</li><li>v1.2.0 (2026/11/15) 숨쉬는 범위 (몸): "전체적으로"~"윗가슴만"을 고를 수 있게. 가슴이 큰 아바타는 "윗가슴만"으로 두면 윗가슴만 숨쉬어요 · 숨쉬기 강도 최대 200% (150% 넘으면 경고)</li><li>v1.1.0 (2026/11/15) 움직이는 본 보면서 고르기 (몸): 숨쉴 때 움직이는 본과 메쉬를 색으로 보여 주고, 가슴에 붙은 본(날개·장식 등)마다 같이 움직일지 고를 수 있게 · 인스펙터에서 진단 정보 보내기 (진단 도구 포함)</li><li>v1.0.1 (2026/11/15) 셰이프 보면서 고르기: 고른 셰이프가 맨 앞으로 이동하지 않도록 수정</li><li>v1.0.0 (2026/11/15) 공개</li></ul>
+  <h3>업데이트 이력</h3><ul><li>v1.3.0 (2026/11/16) 심박 연동: Pulsoid·HypeRate 같은 심박 앱과 연동해 심박이 오르면 호흡이 빠르고 깊어지고 볼이 붉어지게 (동기화 비트는 늘지 않아요)</li><li>v1.2.1 (2026/11/16) 자연 깜빡임 셰이프 수치(%)를 조절할 수 있게 (눈 셰이프를 조정해 둔 아바타용) · 귀/꼬리 인식에서 EditorOnly 메쉬 제외 · FBT 지원 명시</li><li>v1.2.0 (2026/11/15) 숨쉬는 범위 (몸): "전체적으로"~"윗가슴만"을 고를 수 있게. 가슴이 큰 아바타는 "윗가슴만"으로 두면 윗가슴만 숨쉬어요 · 숨쉬기 강도 최대 200% (150% 넘으면 경고)</li><li>v1.1.0 (2026/11/15) 움직이는 본 보면서 고르기 (몸): 숨쉴 때 움직이는 본과 메쉬를 색으로 보여 주고, 가슴에 붙은 본(날개·장식 등)마다 같이 움직일지 고를 수 있게 · 인스펙터에서 진단 정보 보내기 (진단 도구 포함)</li><li>v1.0.1 (2026/11/15) 셰이프 보면서 고르기: 고른 셰이프가 맨 앞으로 이동하지 않도록 수정</li><li>v1.0.0 (2026/11/15) 공개</li></ul>
   <h3>문의</h3>
   <div class="contact"><span>BOOTH 메시지 / Discord</span><span class="id">eukkbi_soft</span><button type="button" class="copy" data-copy="eukkbi_soft" data-done="복사했어요">복사</button></div>
 </section>
@@ -651,6 +680,18 @@
   <p class="note tip"><b>Rests during expressions</b>While your avatar shows an expression (gestures, FaceEmo and so on), gaze, blinks, brows and mouth pause, and resume when it ends. Eyelids never close twice over a closed-eye expression.</p>
 </section>
 
+<section id="en-heart">
+  <h2>Heart-rate link (v1.3.0)</h2>
+  <p>Linked to a heart-rate app such as Pulsoid or HypeRate: as your heart rate rises, <b>the breath gets faster and a little deeper</b> and <b>the cheeks blush</b>. It only reads the heart-rate parameter the app's avatar prefab adds, so no synced bit is added. Avatars without that parameter get nothing built.</p>
+  <ol class="steps">
+    <li>Add the heart-rate app's avatar prefab (it gives the avatar a heart-rate parameter such as <code>HR</code>).</li>
+    <li>Under <span class="ui">Heart-rate breathing</span> on the Body tab, choose the <span class="ui">Heart-rate parameter</span>. Pulsoid's app, HypeRate and HRtoVRChat usually use <code>HR</code>; PulsoidToOSC uses <code>HeartRateInt</code>. Type the name for other apps. "The avatar has the … parameter" means you're set.</li>
+    <li>Set the <span class="ui">Resting ~ fast heart rate</span> (70–130 bpm by default) and how fast and deep the breath gets at the fast rate.</li>
+    <li>Under <span class="ui">Heart-rate blush</span> on the Face tab, set the blush shape (found for you), how strong it gets and the heart rate it starts at.</li>
+  </ol>
+  <p>Move <span class="ui">Preview heart rate</span> to see the breathing and blush at that heart rate. The blush adds on top of the avatar's expression, so an expression's own blush stays.</p>
+</section>
+
 <section id="en-bones">
   <h2>Ears, tail, wings</h2>
   <p>Ears twitch, flick and perk up; the tail sways, swishes and wags lazily; wings flap, flutter and spread, all mixed at random. Left and right ears move on their own timing.</p>
@@ -708,6 +749,7 @@
   <details><summary>The gaze goes the wrong way or makes another face</summary><p>Pick the right up, down, left and right shapes again with <span class="ui">Pick shapes by eye</span> under Eyes. Left and right are the avatar's.</p></details>
   <details><summary>It blinks twice</summary><p>The avatar's own blink overlaps. Choose <span class="ui">Easy Ikiiki only</span> or <span class="ui">The avatar's only</span> under Natural blink.</p></details>
   <details><summary>On a large bust, the breasts move too much</summary><p>Slide <span class="ui">Breathing area</span> under Body to "Upper chest only": just the upper front of the chest breathes then, and the bust hardly moves.</p></details>
+  <details><summary>The heart-rate link doesn't work</summary><p>Check that Heart-rate breathing says "The avatar has the … parameter". If not, add the heart-rate app's prefab or choose the parameter name the app uses. Also check that OSC output is on in the app.</p></details>
   <details><summary>Does it work with FBT (full-body tracking)?</summary><p>Yes. Breathing moves no humanoid bone: it swells a bone of its own added under the chest, so it breathes in whatever pose your trackers set. Desktop and VR work the same way.</p></details>
   <details><summary>I use face tracking</summary><p>Turn "Eyes" and "Face" off in the in-game menu while tracking, or leave those parts out if you always track. If VRChat's own eye tracking moves your eyelids, untick <span class="ui">Enable</span> on Natural blink.</p></details>
   <details><summary>It looks fine in Unity but moves differently in game</summary><p>VRChat's default idle plays only in game. Turn on <span class="ui">Turn off the default idle sway</span>.</p></details>
@@ -726,7 +768,7 @@
   </ol>
   <p>The sending is done by the bundled <a href="https://eukkbi.booth.pm/items/9093824">Eukkbi_Soft Avatar Diagnostics</a> tool (<code>Assets/Eukkbi_Soft/Avatar_Diagnostics</code>); Easy Ikiiki itself has no network code. Deleted that folder? Get it again for free on BOOTH.</p>
   <p>Rather not send it? Use <span class="ui">Copy only</span> and paste the text in your message.</p>
-  <h3>Update history</h3><ul><li>v1.2.1 (2026/11/16) Blink shape amount (%) for natural blinks (for avatars with adjusted eye shapes); ear and tail detection skips EditorOnly meshes; FBT support noted</li><li>v1.2.0 (2026/11/15) Breathing area (Body): choose Whole chest to Upper chest only; on a large bust, "Upper chest only" lets just the upper chest breathe; breathing strength up to 200% (warning past 150%)</li><li>v1.1.0 (2026/11/15) Pick moving bones by eye (Body): see the bones and meshes breathing moves, and choose which bones on the chest (wings, accessories) ride along; send diagnostics from the inspector (diagnostics tool bundled)</li><li>v1.0.1 (2026/11/15) Pick shapes by eye: a picked shape no longer jumps to the top</li><li>v1.0.0 (2026/11/15) Released</li></ul>
+  <h3>Update history</h3><ul><li>v1.3.0 (2026/11/16) Heart-rate link: with heart-rate apps such as Pulsoid and HypeRate, the breath quickens and deepens and the cheeks blush as the heart rate rises (no extra synced bits)</li><li>v1.2.1 (2026/11/16) Blink shape amount (%) for natural blinks (for avatars with adjusted eye shapes); ear and tail detection skips EditorOnly meshes; FBT support noted</li><li>v1.2.0 (2026/11/15) Breathing area (Body): choose Whole chest to Upper chest only; on a large bust, "Upper chest only" lets just the upper chest breathe; breathing strength up to 200% (warning past 150%)</li><li>v1.1.0 (2026/11/15) Pick moving bones by eye (Body): see the bones and meshes breathing moves, and choose which bones on the chest (wings, accessories) ride along; send diagnostics from the inspector (diagnostics tool bundled)</li><li>v1.0.1 (2026/11/15) Pick shapes by eye: a picked shape no longer jumps to the top</li><li>v1.0.0 (2026/11/15) Released</li></ul>
   <h3>Contact</h3>
   <div class="contact"><span>BOOTH message / Discord</span><span class="id">eukkbi_soft</span><button type="button" class="copy" data-copy="eukkbi_soft" data-done="Copied">Copy</button></div>
 </section>
