@@ -329,7 +329,7 @@
 <section id="ja-parts">
   <h2>パーツ</h2>
   <p>インスペクターの上にパーツのカードが並んでいます。<b>からだ（呼吸）</b>と<b>メニュー</b>は最初から入っていて、ほかのパーツはカードの <span class="ui">追加</span> で入れ、<span class="ui">外す</span> で外します。カードを押すと、その下にそのパーツの設定が表示されます。</p>
-  <figure><div class="shot"><img src="img/inspector_ja.png" alt="Easy Ikiiki のインスペクター" width="639" height="856" loading="lazy"></div><figcaption>パーツのカードと「目」の設定。パーツごとに色が分かれています。</figcaption></figure>
+  <figure><div class="shot"><img src="img/inspector_ja.png" alt="Easy Ikiiki のインスペクター" width="560" height="894" loading="lazy"></div><figcaption>パーツのカードと「目」の設定。パーツごとに色が分かれ、「メニュー」カードには導入済みのモジュール（ここでは「心拍」）のランプが付きます。</figcaption></figure>
   <p>カードの左下には、アバターで見つかったもの（<span class="ui">ボーン 2 個</span>、<span class="ui">シェイプあり</span> など）が表示されます。見つからないパーツも追加でき、あとで <span class="ui">ボーンを認識</span> や <span class="ui">ボーンを見ながら選ぶ</span> で指定できます。</p>
 </section>
 
@@ -342,6 +342,7 @@
     <li><span class="ui">1回の呼吸の長さ (秒)</span> と <span class="ui">速さのゆらぎ (%)</span>：呼吸の速さと、そのばらつき。</li>
     <li><span class="ui">標準の待機モーションを止める</span>（標準でオン）：Additive レイヤーを設定していないアバターは、ゲーム内で VRChat 標準の待機モーションで腕や胸が揺れます（Gesture Manager では見えません）。オンにすると、この揺れを止めて呼吸だけを残します。</li>
   </ul>
+  <figure><div class="shot"><img src="img/body_ja.png" alt="呼吸の設定" width="560" height="241" loading="lazy"></div><figcaption>「からだ」タブの呼吸の設定。<span class="ui">一緒に動く</span> に、胸と一緒に動くボーンが表示されます。</figcaption></figure>
   <h3>動くボーンを見ながら選ぶ</h3>
   <p>呼吸の設定にある <span class="ui">動くボーンを見ながら選ぶ</span> を押すと、呼吸で動くところがアバターの上にミント色で表示されます（色が濃いほど大きく動きます）。右の一覧には、胸に付いたボーン（胸・翼・飾りなど）と、動くメッシュが並びます。</p>
   <p>チェックを外すか点を押すと、そのボーン（と下のボーン）は呼吸で動かなくなります。たとえば翼が呼吸に合わせて動くのが気になるときは、翼のボーンを外してください。変更はすぐにコンポーネントに保存され、Ctrl+Z で戻せます。</p>
@@ -373,8 +374,17 @@
   <ul>
     <li>ボーンは名前（ear・耳・tail・しっぽ・wing・羽 など）で自動で見つかります。衣装やヘアで後から足した耳・しっぽも、Modular Avatar で付く場所を考えて探します。</li>
     <li>見つからない・違う場合は <span class="ui">ボーンを認識</span>（もう一度探して決める）か <span class="ui">ボーンを見ながら選ぶ</span> を使ってください。</li>
+    <li><b>別に付けている耳・羽・しっぽ</b>（アクセサリーや衣装）は、そのオブジェクト（またはボーン）を Hierarchy から <span class="ui">ボーンを認識</span> の下の枠にドラッグ＆ドロップするか、Hierarchy で選んで <span class="ui">Hierarchy で選んだもので指定</span> を押すと、その中の耳・羽・しっぽのボーンが登録されます。体の中心にあるボーンを入れると、左右に分けて登録します。</li>
     <li><span class="ui">アバター標準の耳・しっぽ・翼の動きを止める</span>（標準でオン）：アバター自身のアニメーションが耳やしっぽを動かしている場合、その動きを外して重ならないようにします。</li>
     <li>PhysBone がある場合はビルド時に「Is Animated」を自動でオンにするので、動きに揺れが自然に加わります。</li>
+  </ul>
+  <h3>自作のアニメーション</h3>
+  <p>垂れ耳など、標準の動きが合わないときは、自分で作ったアニメーションクリップを入れられます。耳・しっぽ・翼のタブにある <span class="ui">自作のアニメーション</span> の <span class="ui">+ クリップ追加</span> を押すか、クリップをその行にドロップしてください。入れたクリップは標準の動きに混ざってランダムなタイミングで再生され、強さのスライダーも効きます。</p>
+  <figure><div class="shot"><img src="img/ears_ja.png" alt="耳の設定と自作のアニメーション" width="560" height="358" loading="lazy"></div><figcaption>MANUKA の耳に、アバター付属の「Ear down」「Ear fold」を入れた例。上の枠には別に付けている耳をドロップできます。</figcaption></figure>
+  <ul>
+    <li><span class="ui">自作のアニメーションだけ使う</span>：標準の動きを使わず、入れたクリップだけをランダムに再生します。</li>
+    <li>しっぽは <span class="ui">自作アニメーションの確率</span> で、ゆらゆら 2 回ごとにクリップを再生する確率を決めます。「自作のアニメーションだけ使う」にすると、代わりに <span class="ui">間隔 (秒)</span> でクリップの間の待ち時間を決めます。</li>
+    <li>クリップは休んでいる姿勢で始まり、休んでいる姿勢で終わるように作ってください。使うのはそのパーツのボーン（とその下のボーン）の回転・位置だけで、ほかを動かすカーブは使いません。左右の耳を一緒に動かすクリップは左右に分けて、それぞれのタイミングで再生します。</li>
   </ul>
 </section>
 
@@ -382,9 +392,16 @@
   <h2>見ながら選ぶ</h2>
   <h3>ボーンを見ながら選ぶ</h3>
   <p>アバターのワイヤーフレームの上にボーンが点で表示されます。おすすめのボーンはパーツの色、選んだボーンは白で表示され、クリックで選択・解除します。右のリストでは名前で検索できます。<span class="ui">適用</span> で決定します。</p>
-  <figure><div class="shot"><img src="img/bonepicker_ja.png" alt="ボーンを見ながら選ぶウィンドウ" width="1000" height="640" loading="lazy"></div></figure>
+  <ul>
+    <li><span class="ui">クリックで根元のボーンを選ぶ</span>：耳や翼のどこをクリックしても、その根元のボーンが選ばれます。クリックしたボーンそのものを選ぶときは Shift+クリック。</li>
+    <li><span class="ui">反対側も一緒に選ぶ</span>：左を選ぶと右も一緒に選ばれます（しっぽにはありません）。</li>
+    <li>選んだボーンと一緒に動く下のボーンは、白い縁の点と太い白線で表示され、リストに <span class="ui">↳ 一緒に動く</span> と出ます。下の行に選んだ数と一緒に動くボーンの数が出るので、うまく選べたか確かめられます。</li>
+    <li>Hierarchy からオブジェクトやボーンをウィンドウにドロップするか、<span class="ui">Hierarchy で選んだもので指定</span> を押しても選べます。</li>
+  </ul>
+  <figure><div class="shot"><img src="img/bonepicker_ja.png" alt="ボーンを見ながら選ぶウィンドウ" width="1000" height="640" loading="lazy"></div><figcaption>MANUKA の耳。根元の Manuka_ear_L / R を選ぶと、先の .001 が「一緒に動く」と表示されます。</figcaption></figure>
   <h3>シェイプを見ながら選ぶ</h3>
   <p>上の枠（視線のゆらぎ・瞳のうるうる・自然なまばたき・表情）を選び、顔のサムネイルから選びます。マウスを乗せると、左の大きなプレビューでそのシェイプが動きます。<span class="ui">すべて表示</span> で候補以外のシェイプも表示できます。<span class="ui">適用</span> で全部の枠をまとめて保存し、何も選ばなかった枠は自動のままです。</p>
+  <p>見回すシェイプがなく目のボーンがあるアバター（マロンなど）は、視線の枠に <span class="ui">自動: 目のボーンで動かす</span> と表示され、目のボーンで視線を動かします。</p>
   <figure><div class="shot"><img src="img/shapepicker_ja.png" alt="シェイプを見ながら選ぶウィンドウ" width="1100" height="720" loading="lazy"></div></figure>
 </section>
 
@@ -406,6 +423,9 @@
     <li><span class="ui">機能ごとの ON/OFF を追加</span>：オフにすると全体の ON/OFF だけになり、同期パラメータは 1 bit になります。</li>
     <li><span class="ui">同期パラメータ</span>：使う bit 数（最大 7 bit）が表示されます。</li>
   </ul>
+  <h3>マニュアルを開く</h3>
+  <p>「メニュー」タブの下のほうにある <span class="ui">マニュアルを開く</span> を押すと、インスペクターの言語（日本語 / 한국어 / English）でこのマニュアルがブラウザで開きます。その下の <span class="ui">お問い合わせのとき</span> からは診断情報を送れます（<a href="#ja-info">うまく動かないとき</a>）。</p>
+  <figure><div class="shot"><img src="img/menu_manual_ja.png" alt="マニュアルとお問い合わせ" width="560" height="246" loading="lazy"></div><figcaption>「メニュー」タブの下のほう。</figcaption></figure>
 </section>
 
 <section id="ja-modules">
@@ -552,7 +572,7 @@
 <section id="ko-parts">
   <h2>부위</h2>
   <p>인스펙터 위쪽에 부위 카드가 있어요. <b>몸(숨쉬기)</b>과 <b>메뉴</b>는 기본으로 들어 있고, 다른 부위는 카드의 <span class="ui">추가</span>로 넣고 <span class="ui">제거</span>로 빼요. 카드를 누르면 그 아래에 해당 부위의 설정이 나와요.</p>
-  <figure><div class="shot"><img src="img/inspector_ko.png" alt="Easy Ikiiki 인스펙터" width="639" height="856" loading="lazy"></div><figcaption>부위 카드와 "눈" 설정. 부위마다 색이 달라요.</figcaption></figure>
+  <figure><div class="shot"><img src="img/inspector_ko.png" alt="Easy Ikiiki 인스펙터" width="560" height="894" loading="lazy"></div><figcaption>부위 카드와 "눈" 설정. 부위마다 색이 다르고, "메뉴" 카드에는 들어 있는 모듈(여기서는 "심박")의 불이 붙어요.</figcaption></figure>
   <p>카드 왼쪽 아래에는 아바타에서 찾은 것(<span class="ui">본 2개</span>, <span class="ui">셰이프 있음</span> 등)이 표시돼요. 찾지 못한 부위도 추가할 수 있고, 나중에 <span class="ui">본 인식하기</span>나 <span class="ui">본 보면서 고르기</span>로 지정하면 돼요.</p>
 </section>
 
@@ -565,6 +585,7 @@
     <li><span class="ui">한 번 숨쉬는 시간 (초)</span>와 <span class="ui">속도 흔들림 (%)</span>: 숨 쉬는 속도와 그 흔들림.</li>
     <li><span class="ui">기본 대기 움직임 끄기</span> (기본 켜짐): Additive 레이어를 따로 설정하지 않은 아바타는 게임 안에서 VRChat 기본 대기 애니메이션 때문에 팔과 가슴이 흔들려요 (Gesture Manager에서는 안 보여요). 켜 두면 이 흔들림을 없애고 숨쉬기만 남겨요.</li>
   </ul>
+  <figure><div class="shot"><img src="img/body_ko.png" alt="숨쉬기 설정" width="560" height="241" loading="lazy"></div><figcaption>"몸" 탭의 숨쉬기 설정. <span class="ui">같이 움직임</span>에 가슴과 같이 움직이는 본이 나와요.</figcaption></figure>
   <h3>움직이는 본 보면서 고르기</h3>
   <p>숨쉬기 설정의 <span class="ui">움직이는 본 보면서 고르기</span>를 누르면, 숨쉴 때 움직이는 곳이 아바타 위에 민트색으로 보여요(색이 진할수록 많이 움직여요). 오른쪽 목록에는 가슴에 붙은 본(가슴·날개·장식 등)과 움직이는 메쉬가 나와요.</p>
   <p>체크를 끄거나 점을 누르면 그 본(과 아래 본)은 숨쉴 때 가만히 있어요. 예를 들어 날개가 숨쉬기를 따라 움직이는 게 싫으면 날개 본을 끄면 돼요. 바꾼 내용은 바로 컴포넌트에 저장되고, Ctrl+Z로 되돌릴 수 있어요.</p>
@@ -596,8 +617,17 @@
   <ul>
     <li>본은 이름(ear·耳·tail·しっぽ·wing·羽 등)으로 자동으로 찾아요. 의상이나 헤어로 나중에 붙인 귀·꼬리도 Modular Avatar로 붙는 위치를 생각해서 찾아요.</li>
     <li>못 찾거나 틀리면 <span class="ui">본 인식하기</span>(다시 찾아서 정하기)나 <span class="ui">본 보면서 고르기</span>를 써 주세요.</li>
+    <li><b>따로 쓰는 귀·날개·꼬리</b>(액세서리나 의상)는 그 오브젝트(또는 본)를 Hierarchy에서 <span class="ui">본 인식하기</span> 아래 칸에 끌어다 놓거나, Hierarchy에서 고른 뒤 <span class="ui">Hierarchy에서 고른 걸로 지정</span>을 누르면 그 안의 귀·날개·꼬리 본이 등록돼요. 몸 가운데에 있는 본을 넣으면 왼쪽·오른쪽으로 나눠서 등록해요.</li>
     <li><span class="ui">아바타 기본 귀·꼬리·날개 움직임 끄기</span> (기본 켜짐): 아바타 자체 애니메이션이 귀나 꼬리를 움직이면, 그 움직임을 빼서 겹치지 않게 해요.</li>
     <li>PhysBone이 있으면 빌드할 때 "Is Animated"를 자동으로 켜서, 움직임 위에 흔들림이 자연스럽게 더해져요.</li>
+  </ul>
+  <h3>내가 만든 애니메이션</h3>
+  <p>처진 귀처럼 기본 움직임이 어울리지 않을 때는 직접 만든 애니메이션 클립을 넣을 수 있어요. 귀·꼬리·날개 탭의 <span class="ui">내가 만든 애니메이션</span>에서 <span class="ui">+ 클립 추가</span>를 누르거나, 클립을 그 줄에 끌어다 놓으세요. 넣은 클립은 기본 움직임과 섞여서 랜덤한 타이밍에 재생되고, 강도 슬라이더도 적용돼요.</p>
+  <figure><div class="shot"><img src="img/ears_ko.png" alt="귀 설정과 내가 만든 애니메이션" width="560" height="358" loading="lazy"></div><figcaption>MANUKA 귀에 아바타에 들어 있는 "Ear down", "Ear fold"를 넣은 예. 위쪽 칸에는 따로 쓰는 귀를 끌어다 놓을 수 있어요.</figcaption></figure>
+  <ul>
+    <li><span class="ui">내 애니메이션만 쓰기</span>: 기본 움직임은 쓰지 않고 넣은 클립만 랜덤으로 재생해요.</li>
+    <li>꼬리는 <span class="ui">내 애니메이션 확률</span>로, 살랑 두 번마다 클립을 재생할 확률을 정해요. "내 애니메이션만 쓰기"를 켜면 대신 <span class="ui">간격 (초)</span>으로 클립 사이에 쉬는 시간을 정해요.</li>
+    <li>클립은 쉬는 자세에서 시작해서 쉬는 자세로 끝나게 만들어 주세요. 그 부위의 본(과 그 아래 본)의 회전·위치만 쓰고, 다른 곳을 움직이는 커브는 쓰지 않아요. 양쪽 귀를 같이 움직이는 클립은 왼쪽·오른쪽으로 나눠서 각자 다른 타이밍에 재생해요.</li>
   </ul>
 </section>
 
@@ -605,9 +635,16 @@
   <h2>보면서 고르기</h2>
   <h3>본 보면서 고르기</h3>
   <p>아바타 와이어프레임 위에 본이 점으로 표시돼요. 추천 본은 부위 색, 고른 본은 흰색이고 클릭으로 고르거나 뺄 수 있어요. 오른쪽 목록에서 이름으로 검색할 수도 있어요. <span class="ui">적용</span>을 누르면 정해져요.</p>
-  <figure><div class="shot"><img src="img/bonepicker_ko.png" alt="본 보면서 고르기 창" width="1000" height="640" loading="lazy"></div></figure>
+  <ul>
+    <li><span class="ui">클릭하면 뿌리 본 고르기</span>: 귀나 날개의 어디를 클릭해도 그 뿌리 본이 골라져요. 클릭한 본 자체를 고르려면 Shift+클릭.</li>
+    <li><span class="ui">반대쪽도 같이 고르기</span>: 왼쪽을 고르면 오른쪽도 같이 골라져요 (꼬리에는 없어요).</li>
+    <li>고른 본과 같이 움직이는 아래 본은 흰 테두리 점과 굵은 흰 선으로 보이고, 목록에 <span class="ui">↳ 같이 움직임</span>이라고 나와요. 아래 줄에 고른 개수와 같이 움직이는 본 개수가 나와서, 잘 골랐는지 확인할 수 있어요.</li>
+    <li>Hierarchy에서 오브젝트나 본을 창에 끌어다 놓거나, <span class="ui">Hierarchy에서 고른 걸로 지정</span>을 눌러도 골라져요.</li>
+  </ul>
+  <figure><div class="shot"><img src="img/bonepicker_ko.png" alt="본 보면서 고르기 창" width="1000" height="640" loading="lazy"></div><figcaption>MANUKA의 귀. 뿌리인 Manuka_ear_L / R을 고르면 끝의 .001이 "같이 움직임"으로 표시돼요.</figcaption></figure>
   <h3>셰이프 보면서 고르기</h3>
   <p>위쪽 칸(시선 흔들림·눈 반짝임·자연 깜빡임·표정)을 고르고 얼굴 썸네일에서 골라요. 마우스를 올리면 왼쪽 큰 미리보기에서 그 셰이프가 움직여요. <span class="ui">모든 셰이프 보기</span>로 후보가 아닌 셰이프도 볼 수 있어요. <span class="ui">적용</span>을 누르면 모든 칸이 한 번에 저장되고, 고르지 않은 칸은 자동 그대로예요.</p>
+  <p>둘러보는 셰이프가 없고 눈 본이 있는 아바타(마론 등)는 시선 칸에 <span class="ui">자동: 눈 본으로 움직임</span>이라고 나오고, 눈 본으로 시선을 움직여요.</p>
   <figure><div class="shot"><img src="img/shapepicker_ko.png" alt="셰이프 보면서 고르기 창" width="1100" height="720" loading="lazy"></div></figure>
 </section>
 
@@ -629,6 +666,9 @@
     <li><span class="ui">기능별 ON/OFF 넣기</span>: 끄면 전체 ON/OFF만 남고 동기화 파라미터가 1 bit가 돼요.</li>
     <li><span class="ui">동기화 파라미터</span>: 쓰는 bit 수(최대 7 bit)가 표시돼요.</li>
   </ul>
+  <h3>설명서 열기</h3>
+  <p>"메뉴" 탭 아래쪽의 <span class="ui">설명서 열기</span>를 누르면 인스펙터 언어(日本語 / 한국어 / English)로 이 설명서가 브라우저에서 열려요. 그 아래 <span class="ui">문의할 때</span>에서는 진단 정보를 보낼 수 있어요(<a href="#ko-info">잘 안 될 때</a>).</p>
+  <figure><div class="shot"><img src="img/menu_manual_ko.png" alt="설명서와 문의" width="560" height="246" loading="lazy"></div><figcaption>"메뉴" 탭 아래쪽.</figcaption></figure>
 </section>
 
 <section id="ko-modules">
@@ -775,7 +815,7 @@
 <section id="en-parts">
   <h2>Parts</h2>
   <p>The inspector starts with a row of part cards. <b>Body (breathing)</b> and <b>Menu</b> are always in; add other parts with <span class="ui">Add</span> on their card and take them out with <span class="ui">Remove</span>. Clicking a card shows that part's settings below.</p>
-  <figure><div class="shot"><img src="img/inspector_en.png" alt="The Easy Ikiiki inspector" width="639" height="856" loading="lazy"></div><figcaption>Part cards and the Eyes settings. Each part has its own colour.</figcaption></figure>
+  <figure><div class="shot"><img src="img/inspector_en.png" alt="The Easy Ikiiki inspector" width="560" height="905" loading="lazy"></div><figcaption>Part cards and the Eyes settings. Each part has its own colour, and the Menu card carries a light for each installed module (here "Heart rate").</figcaption></figure>
   <p>The bottom left of each card shows what was found on the avatar (<span class="ui">2 bone(s)</span>, <span class="ui">shapes found</span> and so on). Parts that weren't found can still be added; set them later with <span class="ui">Detect bones</span> or <span class="ui">Pick by eye</span>.</p>
 </section>
 
@@ -788,6 +828,7 @@
     <li><span class="ui">Seconds per breath</span> and <span class="ui">Pace variation (%)</span>: the pace and how much it wanders.</li>
     <li><span class="ui">Turn off the default idle sway</span> (on by default): avatars without their own Additive layer get VRChat's default idle in game, which sways the arms and chest (Gesture Manager doesn't show it). This stops it so only the breathing remains.</li>
   </ul>
+  <figure><div class="shot"><img src="img/body_en.png" alt="The breathing settings" width="560" height="241" loading="lazy"></div><figcaption>The breathing settings on the Body tab. <span class="ui">Moves along</span> lists the bones that move with the chest.</figcaption></figure>
   <h3>Pick moving bones by eye</h3>
   <p>Press <span class="ui">Pick moving bones by eye</span> in the breathing settings to see what breathing moves, coloured mint on the avatar (the deeper the colour, the more it moves). The list on the right shows the bones on the chest (breasts, wings, accessories) and the meshes that move.</p>
   <p>Untick a bone or click its dot and it (with the bones under it) stays still while breathing. If the wings riding along with each breath bother you, for example, untick the wing bone. Changes are saved to the component right away and can be undone with Ctrl+Z.</p>
@@ -819,8 +860,17 @@
   <ul>
     <li>Bones are found by name (ear, 耳, tail, しっぽ, wing, 羽 and so on), including ears and tails added later with outfits or hair, where Modular Avatar will put them.</li>
     <li>If they're missing or wrong, use <span class="ui">Detect bones</span> (search again and keep the result) or <span class="ui">Pick by eye</span>.</li>
+    <li><b>Ears, wings or a tail you wear separately</b> (an accessory or outfit): drop the object (or its bones) from the Hierarchy onto the box under <span class="ui">Detect bones</span>, or select it in the Hierarchy and press <span class="ui">Use the Hierarchy selection</span>, and the ear, wing or tail bones inside it are set. A bone on the middle of the body is split into its left and right sides.</li>
     <li><span class="ui">Turn off the avatar's own ear, tail and wing motion</span> (on by default): if the avatar's own animations move its ears or tail, that motion is taken off so the two don't stack.</li>
     <li>With PhysBones on them, the build turns on "Is Animated", so the physics adds natural follow-through.</li>
+  </ul>
+  <h3>Your own animations</h3>
+  <p>When the built-in moves don't suit, say on droopy ears, add animation clips you made. On the Ears, Tail and Wings tabs, press <span class="ui">+ Add clip</span> under <span class="ui">Your own animations</span>, or drop clips on that row. Your clips mix in with the built-in moves at random times, and the strength slider applies to them too.</p>
+  <figure><div class="shot"><img src="img/ears_en.png" alt="The ear settings with your own animations" width="560" height="358" loading="lazy"></div><figcaption>MANUKA's ears with the avatar's own "Ear down" and "Ear fold" clips. Ears you wear separately can be dropped on the box above.</figcaption></figure>
+  <ul>
+    <li><span class="ui">Use only my animations</span>: the built-in moves are left out and only your clips play, at random.</li>
+    <li>For the tail, <span class="ui">Own animation chance</span> sets how likely one of your clips plays after every two sways. With "Use only my animations" on, <span class="ui">Interval (s)</span> sets the wait between clips instead.</li>
+    <li>Start and end each clip in the resting pose. Only rotation and position of that part's bones (and the bones under them) are used; other curves in the clip are left out. A clip that moves both ears is split, and each side plays on its own timing.</li>
   </ul>
 </section>
 
@@ -828,9 +878,16 @@
   <h2>Pick by eye</h2>
   <h3>Pick bones by eye</h3>
   <p>Bones show as dots on a wireframe of your avatar: suggested ones in the part's colour, picked ones in white. Click to pick or drop a bone, or search by name in the list. <span class="ui">Apply</span> keeps the choice.</p>
-  <figure><div class="shot"><img src="img/bonepicker_en.png" alt="The bone picker window" width="1000" height="640" loading="lazy"></div></figure>
+  <ul>
+    <li><span class="ui">Clicking picks the root</span>: click anywhere on an ear or wing and its root bone is picked. Shift-click picks exactly the bone you clicked.</li>
+    <li><span class="ui">Pick the other side too</span>: picking the left one picks the right one as well (not for the tail).</li>
+    <li>Bones that move with your picks show as white-ringed dots joined by thick white lines, marked <span class="ui">↳ moves with it</span> in the list. The bottom line counts your picks and the bones that move with them, so you can tell the choice is right.</li>
+    <li>You can also drop objects or bones from the Hierarchy onto the window, or press <span class="ui">Use the Hierarchy selection</span>.</li>
+  </ul>
+  <figure><div class="shot"><img src="img/bonepicker_en.png" alt="The bone picker window" width="1000" height="640" loading="lazy"></div><figcaption>MANUKA's ears. With the roots Manuka_ear_L / R picked, the .001 bones beyond them show as moving with them.</figcaption></figure>
   <h3>Pick shapes by eye</h3>
   <p>Choose a slot at the top (gaze drift, eye sparkle, natural blink, face) and pick from face thumbnails. Hover one and it moves on the large preview. <span class="ui">Show all shapes</span> lists shapes beyond the suggestions. <span class="ui">Apply</span> saves every slot at once; slots you left alone stay automatic.</p>
+  <p>Avatars with eye bones but no look shapes (Marron, for example) show <span class="ui">Auto: eye bones</span> in the gaze slots, and the gaze moves the eye bones.</p>
   <figure><div class="shot"><img src="img/shapepicker_en.png" alt="The shape picker window" width="1100" height="720" loading="lazy"></div></figure>
 </section>
 
@@ -852,6 +909,9 @@
     <li><span class="ui">Per-feature toggles</span>: off leaves only the overall ON/OFF, using 1 synced bit.</li>
     <li><span class="ui">Synced parameters</span>: shows the bits used (up to 7).</li>
   </ul>
+  <h3>Opening this manual</h3>
+  <p>Press <span class="ui">Open the manual</span> near the bottom of the Menu tab to open this manual in your browser, in the inspector's language (日本語 / 한국어 / English). Below it, <span class="ui">Asking for help</span> sends diagnostics (<a href="#en-info">if something doesn't work</a>).</p>
+  <figure><div class="shot"><img src="img/menu_manual_en.png" alt="The manual and help" width="560" height="271" loading="lazy"></div><figcaption>Near the bottom of the Menu tab.</figcaption></figure>
 </section>
 
 <section id="en-modules">
